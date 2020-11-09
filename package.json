@@ -8,7 +8,8 @@
     "start": "next start",
     "build": "next build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "export": "npm run build && next export"
   },
   "repository": {
     "type": "git",
