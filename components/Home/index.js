@@ -27,7 +27,7 @@ export const Home = () => (
               Opportunity? Reserve your spot now.
             </p>
             <Link href="register">
-              <a className="button-link">Get Started</a>
+              <a className="button-link">Getting Started</a>
             </Link>
           </div>
         </div>
