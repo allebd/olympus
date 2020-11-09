@@ -1,8 +1,10 @@
-import Home from 'components/Home';
+import { Home } from '../components/Home';
 
 const Index = () => (
   <div>
-    <Home />
+    <div className="home-page">
+      <Home />
+    </div>
   </div>
 );
 

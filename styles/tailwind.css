@@ -1,0 +1,68 @@
+/* purgecss start ignore */
+@tailwind  base;
+@tailwind  components;
+/* purgecss end ignore */
+@tailwind  utilities;
+
+.home-page {
+  @apply bg-black text-white min-h-screen p-8 px-40;
+}
+
+/* Start of Layout Component */
+.social {
+  @apply pl-2 text-2xl;
+}
+
+.newsletter form {
+  @apply grid grid-cols-2;
+}
+
+.newsletter form label {
+  @apply col-start-1 col-span-2 text-sm pt-1;
+}
+
+.newsletter form input {
+  @apply rounded-2xl text-sm px-2 border-opacity-25 h-8;
+  border: 1px solid #DAA520;
+}
+
+.copyright {
+  @apply text-center text-sm py-4;
+}
+
+.copyright a, .quick-links a, .contact li span, .newsletter .message {
+  @apply text-sm;
+  color: #DAA520;
+}
+
+.footer-container {
+  @apply grid grid-cols-6 gap-12 py-4;
+}
+
+.footer-container .contact li, .quick-links li{
+  @apply flex text-sm pt-1;
+  margin: 0;
+}
+
+.footer-container .contact {
+  @apply col-start-1 col-span-2;
+}
+
+.footer-container .newsletter {
+  @apply col-end-7 col-span-2;
+}
+/* End of Layout Component */
+
+/* Start of Home Component */
+.button-link {
+  @apply rounded-2xl text-sm p-1 px-8 border-opacity-25 h-8;
+  border: 1px solid #DAA520;
+}
+
+.home-details {
+  @apply text-center p-10;
+}
+
+.home-details h2 {
+  @apply text-3xl;
+}
