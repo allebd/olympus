@@ -1,10 +1,6 @@
 import Link from 'next/link';
-import {
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-  FaTelegramPlane,
-  FaWhatsapp,
-} from 'react-icons/fa';
+import { FaTelegramPlane, FaWhatsapp } from 'react-icons/fa';
+import { FiMapPin, FiPhoneCall, FiSend } from 'react-icons/fi';
 
 export const Footer = () => (
   <div>
@@ -13,16 +9,16 @@ export const Footer = () => (
         <p>Contact</p>
         <ul>
           <li>
-            <div className="pr-2">
-              <FaPhoneAlt />
+            <div className="contact-icon">
+              <FiPhoneCall />
             </div>
             <div>
               <span>+234-803-145-7878</span>
             </div>
           </li>
           <li>
-            <div className="pr-2">
-              <FaMapMarkerAlt />
+            <div className="contact-icon">
+              <FiMapPin />
             </div>
             <div>
               <span>76B Adeniyi Jones, Ikeja, Lagos, Nigeria</span>
@@ -98,7 +94,9 @@ export const Footer = () => (
         <form>
           <label>Enter your email</label>
           <input type="email" placeholder="Email" required />
-          <button></button>
+          <button type="submit" className="newsletter-icon">
+            <FiSend />
+          </button>
         </form>
       </div>
     </div>

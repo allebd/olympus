@@ -1,8 +1,6 @@
 /* purgecss start ignore */
 @tailwind  base;
 @tailwind  components;
-/* purgecss end ignore */
-@tailwind  utilities;
 
 .home-page {
   @apply bg-black text-white min-h-screen p-8 px-40;
@@ -22,8 +20,13 @@
 }
 
 .newsletter form input {
-  @apply rounded-2xl text-sm px-2 border-opacity-25 h-8;
+  @apply rounded-2xl text-sm px-4 pr-12 border-opacity-25 h-8 w-64 text-gray-600;
   border: 1px solid #DAA520;
+  box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
+}
+
+.newsletter form input:focus {
+  @apply outline-none;
 }
 
 .copyright {
@@ -48,21 +51,88 @@
   @apply col-start-1 col-span-2;
 }
 
+.footer-container .contact .contact-icon {
+  @apply pr-2 pt-1;
+}
+
 .footer-container .newsletter {
   @apply col-end-7 col-span-2;
+}
+
+.footer-container .newsletter .newsletter-icon {
+  @apply text-2xl ml-16 w-12;
+  color: #DAA520;
 }
 /* End of Layout Component */
 
 /* Start of Home Component */
 .button-link {
-  @apply rounded-2xl text-sm p-1 px-8 border-opacity-25 h-8;
+  @apply rounded-3xl text-sm p-2 px-12 border-opacity-25;
   border: 1px solid #DAA520;
+  box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
 }
 
 .home-details {
-  @apply text-center p-10;
+  @apply text-center p-10 m-10;
 }
 
 .home-details h2 {
-  @apply text-3xl;
+  @apply text-4xl font-hairline mb-8;
 }
+
+.home-details .description {
+  @apply m-4 pb-4;
+}
+
+.summary {
+  @apply flex justify-center gap-24;
+}
+
+.summary .circle {
+  @apply h-40 w-40 p-4 rounded-full text-sm pt-8;
+  border: 2px solid #FFC535;
+}
+
+.summary .circle span {
+  @apply text-3xl;
+  color: #DAA520;
+}
+
+.scroll-mouse {
+  @apply text-3xl flex justify-center;
+  color: #DAA520; 
+}
+
+.hero {
+  @apply bg-hero-pattern bg-cover bg-center p-8 pt-0 pb-56;
+}
+
+.hero h1 {
+  @apply text-6xl font-hairline;
+}
+
+.hero p {
+  @apply mb-8;
+  color: #DAA520; 
+}
+
+.navigation {
+  @apply grid grid-cols-2 items-center;
+}
+
+.navigation .menu ul {
+  @apply inline-flex text-sm;
+}
+
+.navigation .menu ul li {
+  @apply ml-10;
+}
+
+.navigation .menu ul li:hover {
+  color: #DAA520;
+  border-bottom: 1px solid #FFC535;
+  @apply pb-2;
+}
+
+/* purgecss end ignore */
+@tailwind  utilities;

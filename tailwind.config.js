@@ -5,7 +5,11 @@ module.exports = {
   },
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: (theme) => ({
+        'hero-pattern': "url('/assets/images/Background.svg')",
+      }),
+    },
   },
   variants: {},
   plugins: [],
