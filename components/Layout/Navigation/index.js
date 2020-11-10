@@ -1,7 +1,47 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 export const Navigation = () => (
   <div>
-    <div>
-      <p>footer</p>
+    <div className="navigation">
+      <div className="logo">
+        <Image
+          src="/assets/images/Logo.svg"
+          alt="Logo"
+          width={244}
+          height={121}
+          layout="responsive"
+        />
+      </div>
+      <div className="menu">
+        <ul>
+          <li>
+            <Link href="#">
+              <a>HOME</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="#">
+              <a>ABOUT US</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="#">
+              <a>FAQs</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="#">
+              <a>REGISTER</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="#">
+              <a>LOGIN</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 );
