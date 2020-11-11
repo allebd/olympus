@@ -3,7 +3,7 @@
 @tailwind  components;
 
 .home-page {
-  @apply bg-black text-white min-h-screen p-8 px-40;
+  @apply bg-black text-white min-h-screen p-8 px-40 pt-0;
 }
 
 /* Start of Layout Component */
@@ -69,6 +69,7 @@
 .button-link {
   @apply rounded-3xl text-sm p-2 px-12 border-opacity-25;
   border: 1px solid #DAA520;
+  background: rgba(0, 0, 0, 0.9);
   box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
 }
 
@@ -104,11 +105,11 @@
 }
 
 .hero {
-  @apply bg-hero-pattern bg-cover bg-center p-8 pt-0 pb-56;
+  @apply bg-hero-pattern bg-cover bg-center p-8 pt-0 pb-24;
 }
 
 .hero h1 {
-  @apply text-6xl font-hairline;
+  @apply text-6xl mt-24 font-hairline;
 }
 
 .hero p {
@@ -128,10 +129,72 @@
   @apply ml-10;
 }
 
-.navigation .menu ul li:hover {
+.navigation .menu ul li:active, .navigation .menu ul li.active {
   color: #DAA520;
   border-bottom: 1px solid #FFC535;
   @apply pb-2;
+}
+
+@media (max-width: 1200px) {
+  .home-page {
+    @apply bg-black text-white min-h-screen p-8 px-8;
+  }
+}
+
+@media (max-width: 800px) {
+  .home-page {
+    @apply bg-black text-white min-h-screen p-8 px-8;
+  }
+
+  .footer-container {
+    @apply grid grid-cols-1 mt-16;
+  }
+
+  .home-details {
+    @apply p-0 m-0 mt-12;
+  }
+
+  .summary {
+    @apply grid justify-center gap-8;
+  }
+
+  .footer-container .contact {
+    @apply col-start-1 col-span-1;
+  }
+  
+  .footer-container .newsletter {
+    @apply col-end-1 col-span-1;
+  }
+  
+  .footer-container .newsletter .newsletter-icon {
+    @apply ml-16;
+  }
+
+  .navigation {
+    @apply grid grid-cols-1 content-center justify-items-center text-center;
+  }
+
+  .hero {
+    @apply bg-hero-pattern bg-contain bg-no-repeat bg-center p-8 pt-0 pb-16;
+  }
+  
+  .hero h1 {
+    @apply text-5xl mt-12;
+  } 
+}
+
+@media (max-width: 600px) {
+  .navigation .menu ul .no-mobile {
+    @apply hidden;
+  }
+
+  .hero {
+    @apply bg-hero-pattern bg-contain bg-no-repeat bg-center p-8 pt-0 pb-16;
+  }
+  
+  .hero h1 {
+    @apply text-4xl mt-8;
+  } 
 }
 
 /* purgecss end ignore */

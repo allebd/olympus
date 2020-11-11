@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { CgMouse } from 'react-icons/cg';
 import { Layout } from '../Layout';
 import { Navigation } from '../Layout/Navigation';
