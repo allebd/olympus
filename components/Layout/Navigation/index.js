@@ -24,7 +24,7 @@ export const Navigation = () => (
             </Link>
           </li>
           <li className="no-mobile">
-            <Link href="#">
+            <Link href="/faqs">
               <a>FAQs</a>
             </Link>
           </li>

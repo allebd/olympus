@@ -202,11 +202,11 @@
   @apply bg-about-pattern bg-cover bg-center;
 }
 
-.about-page .hero {
+.about-page .hero, .faq-page .hero {
   @apply bg-none;
 }
 
-.about-page h1 {
+.about-page h1, .faq-page h1 {
   @apply mt-64 mb-8 text-4xl text-center font-hairline;
 }
 
@@ -214,7 +214,7 @@
   @apply mt-12 mb-4 text-xl text-center font-hairline;
 }
 
-.about-page ul li::before {
+.about-page .about-details ul li::before {
   content: "\2022";
   color: #FFC535;
   font-weight: bold;
@@ -226,6 +226,31 @@
 .about-page .learn {
   @apply mb-24 mt-8 grid justify-items-center;
 }
+/* End of About page */
 
+/* FAQs page */
+.faq-page {
+  @apply bg-faq-pattern bg-cover bg-center;
+}
+
+.faq-page .faq-details {
+  @apply mb-24 mt-12;
+}
+
+.faq-question-section {
+  @apply grid grid-cols-6 gap-4 items-center pt-6 pb-2;
+  border-bottom: 1px solid #FFC535;
+}
+
+.faq-question {
+  @apply col-start-1 col-span-5;
+} 
+
+.faq-show {
+  color: #FFC535;
+  @apply text-xl justify-self-end col-end-7 col-span-1;
+} 
+
+/* End of FAQs page */
 /* purgecss end ignore */
 @tailwind  utilities;
