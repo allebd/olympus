@@ -15,17 +15,17 @@ export const Navigation = () => (
       </div>
       <div className="menu">
         <ul>
-          <li>
+          <li className="no-mobile">
             <Link href="#">
               <a>HOME</a>
             </Link>
           </li>
-          <li>
+          <li className="no-mobile">
             <Link href="#">
               <a>ABOUT US</a>
             </Link>
           </li>
-          <li>
+          <li className="no-mobile">
             <Link href="#">
               <a>FAQs</a>
             </Link>

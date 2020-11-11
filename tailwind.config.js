@@ -6,7 +6,7 @@ module.exports = {
   purge: [],
   theme: {
     extend: {
-      backgroundImage: (theme) => ({
+      backgroundImage: () => ({
         'hero-pattern': "url('/assets/images/Background.svg')",
       }),
     },
