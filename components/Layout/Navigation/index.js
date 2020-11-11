@@ -1,27 +1,25 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 export const Navigation = () => (
   <div>
     <div className="navigation">
       <div className="logo">
-        <Image
+        <img
           src="/assets/images/Logo.svg"
           alt="Logo"
           width={244}
           height={121}
-          layout="responsive"
         />
       </div>
       <div className="menu">
         <ul>
           <li className="no-mobile">
-            <Link href="#">
+            <Link href="/">
               <a>HOME</a>
             </Link>
           </li>
           <li className="no-mobile">
-            <Link href="#">
+            <Link href="/about">
               <a>ABOUT US</a>
             </Link>
           </li>

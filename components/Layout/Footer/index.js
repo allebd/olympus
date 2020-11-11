@@ -39,12 +39,12 @@ export const Footer = () => (
         <p>Quick Links</p>
         <ul>
           <li>
-            <Link href="#">
+            <Link href="/">
               <a>Home</a>
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="/about">
               <a>About</a>
             </Link>
           </li>
