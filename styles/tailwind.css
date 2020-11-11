@@ -197,5 +197,35 @@
   } 
 }
 
+/* About Page */
+.about-page {
+  @apply bg-about-pattern bg-cover bg-center;
+}
+
+.about-page .hero {
+  @apply bg-none;
+}
+
+.about-page h1 {
+  @apply mt-64 mb-8 text-4xl text-center font-hairline;
+}
+
+.about-page h6 {
+  @apply mt-12 mb-4 text-xl text-center font-hairline;
+}
+
+.about-page ul li::before {
+  content: "\2022";
+  color: #FFC535;
+  font-weight: bold;
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em;
+}
+
+.about-page .learn {
+  @apply mb-24 mt-8 grid justify-items-center;
+}
+
 /* purgecss end ignore */
 @tailwind  utilities;
