@@ -92,9 +92,7 @@ export const Footer = () => (
           using the latest insights
         </p>
         <form>
-          <label htmlFor="newsletter-email">
-            Enter your email
-          </label>
+          <label htmlFor="newsletter-email">Enter your email</label>
           <input
             id="newsletter-email"
             type="email"
