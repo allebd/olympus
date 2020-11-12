@@ -19,14 +19,16 @@
   @apply col-start-1 col-span-2 text-sm pt-1;
 }
 
-.newsletter form input {
+.newsletter form input, .form-box .form-group input, .form-box .form-group select {
   @apply rounded-2xl text-sm px-4 pr-12 border-opacity-25 h-8 w-64 text-gray-600;
   border: 1px solid #DAA520;
   box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
 }
 
-.newsletter form input:focus {
+.newsletter form input:focus, .form-box .form-group input:focus,
+.form-box .form-group select:focus, .option-pills .option-pill button:focus {
   @apply outline-none;
+  box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.6)
 }
 
 .copyright {
@@ -202,7 +204,7 @@
   @apply bg-about-pattern bg-cover bg-center;
 }
 
-.about-page .hero, .faq-page .hero {
+.about-page .hero, .faq-page .hero, .register-page .hero {
   @apply bg-none;
 }
 
@@ -252,5 +254,100 @@
 } 
 
 /* End of FAQs page */
+/* Register page */
+.register-page {
+  @apply bg-register-pattern bg-cover bg-center grid grid-cols-1 content-center justify-items-center;
+}
+
+.register-page .hero {
+  @apply pb-0;
+}
+
+.register-page .navigation .menu {
+  @apply hidden;
+}
+
+.register-page .navigation {
+  @apply grid grid-cols-1 content-center justify-items-center text-center;
+}
+
+.register-page .footer-container {
+  @apply hidden
+}
+
+.form-box {
+  @apply bg-white rounded-2xl p-8 pt-4 grid grid-cols-1 justify-items-center;
+  border: 1px solid #DAA520;
+  box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
+  width: fit-content;
+}
+
+.form-box h1 {
+  @apply mb-4 text-3xl text-center font-hairline;
+  color: #333333;
+}
+
+.form-box label {
+  @apply text-sm pl-4 pb-1;
+  color: #333333;
+}
+
+.form-box .form-input {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.form-box .form-group input {
+  @apply pr-4;
+}
+
+.form-box .form-group {
+  @apply grid grid-cols-1;
+}
+
+.form-box .referral {
+  @apply col-span-2;
+}
+
+.option-pills {
+  @apply flex gap-4 text-sm;
+  color: #333333;
+}
+
+.option-pills .option-pill {
+  @apply px-3 py-1 rounded-2xl text-center;
+  background: #FFC535;
+  border: 1px solid #FFC535;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
+}
+
+.form-button {
+  @apply grid grid-cols-1 justify-items-center pt-4 col-span-2;
+}
+
+.form-link {
+  color: #333333;
+  @apply text-center text-sm pt-4;
+}
+
+@media (max-width: 800px) {
+  .form-box .form-input {
+    @apply grid grid-cols-1 gap-3 justify-items-center;
+  }
+
+  .form-box .referral {
+    @apply col-span-1;
+  }
+
+  .option-pills {
+    @apply grid grid-cols-2 gap-2;
+    color: #333333;
+  }
+
+  .form-button {
+    @apply col-span-1;
+  }
+}
+/* End of Register page */
 /* purgecss end ignore */
 @tailwind  utilities;

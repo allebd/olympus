@@ -64,7 +64,7 @@ export const Footer = () => (
         <p>&nbsp;</p>
         <ul>
           <li>
-            <Link href="#">
+            <Link href="/register">
               <a>Register</a>
             </Link>
           </li>

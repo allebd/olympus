@@ -43,7 +43,7 @@ export const About = () => (
               and finally a truly passive income system.
             </p>
             <div className="learn">
-              <Link href="register">
+              <Link href="/register">
                 <a className="button-link">Learn More</a>
               </Link>
             </div>

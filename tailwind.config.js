@@ -10,6 +10,7 @@ module.exports = {
         'hero-pattern': "url('/assets/images/Background.svg')",
         'about-pattern': "url('/assets/images/About.svg')",
         'faq-pattern': "url('/assets/images/Faq.svg')",
+        'register-pattern': "url('/assets/images/Register.svg')",
       }),
     },
   },
