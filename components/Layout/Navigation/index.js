@@ -4,12 +4,16 @@ export const Navigation = () => (
   <div>
     <div className="navigation">
       <div className="logo">
-        <img
-          src="/assets/images/Logo.svg"
-          alt="Logo"
-          width={244}
-          height={121}
-        />
+        <Link href="/">
+          <a>
+            <img
+              src="/assets/images/Logo.svg"
+              alt="Logo"
+              width={244}
+              height={121}
+            />
+          </a>
+        </Link>
       </div>
       <div className="menu">
         <ul>
@@ -29,7 +33,7 @@ export const Navigation = () => (
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="/register">
               <a>REGISTER</a>
             </Link>
           </li>

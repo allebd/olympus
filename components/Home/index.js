@@ -16,7 +16,7 @@ export const Home = () => (
               </h1>
               <p>Let the professionals guide you...</p>
               <div>
-                <Link href="register">
+                <Link href="/register">
                   <a className="button-link">Get Started</a>
                 </Link>
               </div>
@@ -63,7 +63,7 @@ export const Home = () => (
               </p>
             </div>
             <div>
-              <Link href="register">
+              <Link href="/register">
                 <a className="button-link">Get Started</a>
               </Link>
             </div>
