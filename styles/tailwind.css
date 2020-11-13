@@ -430,6 +430,12 @@
   border: 1px solid #FFC535;
   box-sizing: border-box;
   box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
+  cursor: pointer;
+}
+
+.option-pills .option-pill:hover {
+  background: #888888;
+  color: #ffffff;
 }
 
 .form-button {
@@ -474,7 +480,7 @@
   @apply col-end-7 col-span-5 p-6;
 }
 
-.protected-layout .dashboard-content h3 {
+.protected-layout .dashboard-content h3, .protected-layout .profile-content h3  {
   @apply font-normal text-xl text-left;
 }
 
@@ -546,6 +552,18 @@
 
 .protected-layout .navigation .logo {
   @apply py-0;
+}
+
+.protected-layout .profile-content .form-box {
+  @apply w-auto;
+}
+
+.protected-layout .profile-content button {
+  @apply text-white;
+}
+
+.protected-layout .profile-content button:hover {
+  @apply text-black;
 }
 
 @media (max-width: 800px) {

@@ -37,7 +37,7 @@ export const Sidebar = () => (
           </li>
           <li>
             <Link href="/settings">
-              <a>Settings</a>
+              <a>Change Password</a>
             </Link>
           </li>
           <li>
