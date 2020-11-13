@@ -44,7 +44,7 @@ export const About = () => (
             </p>
             <div className="learn">
               <Link href="/register">
-                <a className="button-link">Learn More</a>
+                <a><button className="button-link">Learn More</button></a>
               </Link>
             </div>
           </div>
