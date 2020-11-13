@@ -16,12 +16,16 @@ export const Home = () => (
               <p>Let the professionals guide you...</p>
               <div>
                 <Link href="/register">
-                  <a><button className="button-link">Get Started</button></a>
+                  <a>
+                    <button type="button" className="button-link">
+                      Get Started
+                    </button>
+                  </a>
                 </Link>
               </div>
             </div>
           </div>
-          <div className="icon-scroll"></div>
+          <div className="icon-scroll" />
           <div className="home-details">
             <h2>Why Choose Us</h2>
             <div className="description">
@@ -61,7 +65,11 @@ export const Home = () => (
             </div>
             <div>
               <Link href="/register">
-                <a><button className="button-link">Get Started</button></a>
+                <a>
+                  <button type="button" className="button-link">
+                    Get Started
+                  </button>
+                </a>
               </Link>
             </div>
           </div>

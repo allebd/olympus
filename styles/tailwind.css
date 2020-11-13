@@ -227,6 +227,10 @@
   @apply grid grid-cols-2 items-center;
 }
 
+.navigation .logo {
+  @apply py-6
+}
+
 .navigation .menu ul {
   @apply text-right;
 }
@@ -456,5 +460,138 @@
   }
 }
 /* End of Register page */
+
+/* Protected Layout */
+.protected-layout .navigation {
+  @apply grid grid-cols-2 bg-black text-white p-8 py-3;
+}
+
+.protected-layout .main-section {
+  @apply grid grid-cols-6;
+}
+
+.protected-layout main {
+  @apply col-end-7 col-span-5 p-6;
+}
+
+.protected-layout .dashboard-content h3 {
+  @apply font-normal text-xl text-left;
+}
+
+.protected-layout .dashboard-summary {
+  @apply grid grid-cols-4 gap-4;
+}
+
+.protected-layout .dashboard-box {
+  @apply p-4 rounded-xl;
+  background: #FFC535;
+}
+
+.protected-layout .dashboard-box-title {
+  @apply grid grid-cols-4 text-sm;
+}
+
+.protected-layout .dashboard-box-title p {
+  @apply col-span-1 leading-4;
+}
+
+.protected-layout .dashboard-box-value {
+  @apply text-2xl font-semibold text-right;
+}
+
+.protected-layout .dashboard-section {
+  @apply pt-8 grid grid-cols-3 gap-4;
+}
+
+.protected-layout .dashboard-performance {
+  @apply col-span-2;
+  border-right: 1px solid #333333;
+}
+
+.protected-layout .dashboard-news li {
+  @apply pt-4 pb-2 text-sm;
+  color: #94969A;
+  border-bottom: 1px solid #E7E7E7;
+}
+
+.protected-layout .profile-image {
+  @apply text-4xl pl-20;
+  width: fit-content;
+}
+
+.protected-layout .profile-header {
+  @apply grid grid-cols-2 justify-self-end items-center;
+  width: fit-content;
+}
+
+.protected-layout .sidebar-container {
+  @apply bg-black text-white p-8 pt-12 h-screen;
+  border-top-right-radius: 60px;
+}
+
+.protected-layout .sidebar-container ul li {
+  @apply pb-2 mb-4;
+}
+
+.protected-layout .sidebar-container ul li:hover {
+  color: #DAA520;
+  border-bottom: 2px solid #FFC535;
+}
+
+.protected-layout .sidebar-container-extra {
+  @apply h-screen pr-3;
+  background: #FFC535;
+  border-top-right-radius: 55px;
+}
+
+.protected-layout .navigation .logo {
+  @apply py-0;
+}
+
+@media (max-width: 800px) {
+  .protected-layout .dashboard-summary {
+    @apply grid grid-cols-2;
+  }
+
+  .protected-layout .dashboard-section {
+    @apply grid grid-cols-1;
+  }
+
+  .protected-layout .dashboard-performance {
+    @apply col-span-1;
+    border: 0;
+  }
+
+  .protected-layout .main-section {
+    @apply grid grid-cols-4;
+  }
+  
+  .protected-layout main {
+    @apply col-end-5 col-span-3 p-6;
+  }
+}
+
+@media (max-width: 600px) {
+  .protected-layout .navigation {
+    @apply grid grid-cols-1 content-center items-center;
+  }
+  
+  .protected-layout .profile-header {
+    @apply grid grid-cols-2 justify-self-center pt-3;
+  }
+
+  .protected-layout .dashboard-summary {
+    @apply grid grid-cols-1;
+  }
+
+  .protected-layout .main-section {
+    @apply grid grid-cols-1;
+  }
+  
+  .protected-layout main {
+    @apply col-end-1 col-span-1;
+  }
+}
+/* End of Protected Layout */
 /* purgecss end ignore */
 @tailwind  utilities;

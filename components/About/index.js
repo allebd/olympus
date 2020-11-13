@@ -44,7 +44,11 @@ export const About = () => (
             </p>
             <div className="learn">
               <Link href="/register">
-                <a><button className="button-link">Learn More</button></a>
+                <a>
+                  <button type="button" className="button-link">
+                    Learn More
+                  </button>
+                </a>
               </Link>
             </div>
           </div>

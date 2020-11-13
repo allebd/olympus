@@ -9,8 +9,8 @@ export const Navigation = () => (
             <img
               src="/assets/images/Logo.svg"
               alt="Logo"
-              width={244}
-              height={121}
+              width={165}
+              height={60}
             />
           </a>
         </Link>
@@ -38,7 +38,7 @@ export const Navigation = () => (
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="/login">
               <a>LOGIN</a>
             </Link>
           </li>
