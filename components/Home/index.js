@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { CgMouse } from 'react-icons/cg';
 import { Layout } from '../Layout';
 import { Navigation } from '../Layout/Navigation';
 
@@ -17,14 +16,12 @@ export const Home = () => (
               <p>Let the professionals guide you...</p>
               <div>
                 <Link href="/register">
-                  <a className="button-link">Get Started</a>
+                  <a><button className="button-link">Get Started</button></a>
                 </Link>
               </div>
             </div>
           </div>
-          <div className="scroll-mouse">
-            <CgMouse />
-          </div>
+          <div className="icon-scroll"></div>
           <div className="home-details">
             <h2>Why Choose Us</h2>
             <div className="description">
@@ -64,7 +61,7 @@ export const Home = () => (
             </div>
             <div>
               <Link href="/register">
-                <a className="button-link">Get Started</a>
+                <a><button className="button-link">Get Started</button></a>
               </Link>
             </div>
           </div>

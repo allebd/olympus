@@ -69,7 +69,7 @@ export const Footer = () => (
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="login">
               <a>Login</a>
             </Link>
           </li>
