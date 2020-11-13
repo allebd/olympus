@@ -480,7 +480,8 @@
   @apply col-end-7 col-span-5 p-6;
 }
 
-.protected-layout .dashboard-content h3, .protected-layout .profile-content h3  {
+.protected-layout .dashboard-content h3, .protected-layout .profile-content h3
+.protected-layout .news-content h3 {
   @apply font-normal text-xl text-left;
 }
 
