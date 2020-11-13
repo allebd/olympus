@@ -12,7 +12,7 @@ export const Login = () => (
           </div>
           <div className="form-box">
             <h1>Login</h1>
-            <form>
+            <form action="/dashboard">
               <div className="form-input">
                 <div className="form-group">
                   <label htmlFor="username">Username</label>
@@ -41,9 +41,7 @@ export const Login = () => (
             </form>
             <p className="form-link">
               <Link href="#">
-                <a>
-                  Forgot Password?
-                </a>
+                <a>Forgot Password?</a>
               </Link>
             </p>
             <p className="form-link">
