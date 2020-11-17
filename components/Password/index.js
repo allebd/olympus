@@ -37,7 +37,9 @@ export const Password = () => (
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="confirm-new-password">Confirm New Password</label>
+                  <label htmlFor="confirm-new-password">
+                    Confirm New Password
+                  </label>
                   <input
                     id="confirm-new-password"
                     type="password"

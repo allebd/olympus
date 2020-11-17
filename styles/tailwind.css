@@ -12,11 +12,11 @@
 }
 
 .newsletter form {
-  @apply grid grid-cols-2;
+  @apply grid grid-cols-1 gap-2;
 }
 
 .newsletter form label {
-  @apply col-start-1 col-span-2 text-sm pt-1;
+  @apply col-start-1 col-span-1 text-sm pt-1;
 }
 
 .newsletter form input, .form-box .form-group input, .form-box .form-group select {
@@ -61,9 +61,8 @@
   @apply col-end-7 col-span-2;
 }
 
-.footer-container .newsletter .newsletter-icon {
-  @apply text-2xl ml-16 w-12;
-  color: #DAA520;
+.mobile-opt {
+  display: none;
 }
 /* End of Layout Component */
 
@@ -216,11 +215,19 @@
 
 .hero h1 {
   @apply text-6xl mt-24 font-hairline;
+  line-height: 1;
+  width: 60%;
 }
 
 .hero p {
-  @apply mb-8;
+  @apply my-4;
   color: #DAA520; 
+}
+
+.mobile-nav, .faqhide1, .faqhide2, .faqhide3, .faqhide4,
+.faqhide5, .faqhide6, .faqhide7, .faqanswer1, .faqanswer2,
+.faqanswer3, .faqanswer4, .faqanswer5, .faqanswer6, .faqanswer7 {
+  @apply hidden;
 }
 
 .navigation {
@@ -246,6 +253,10 @@
 .navigation .menu ul li:hover {
   color: #DAA520;
   border-bottom: 1px solid #FFC535;
+}
+
+.footer-container .newsletter .newsletter-icon {
+  @apply w-64;
 }
 
 @media (max-width: 1200px) {
@@ -278,13 +289,23 @@
   .footer-container .newsletter {
     @apply col-end-1 col-span-1;
   }
-  
-  .footer-container .newsletter .newsletter-icon {
-    @apply ml-16;
+
+  .newsletter form input {
+    width: auto;
   }
 
-  .navigation {
-    @apply grid grid-cols-1 content-center justify-items-center text-center;
+  .newsletter form label {
+    @apply col-span-1;
+  }
+  
+  .navigation .menu ul.not-mobile {
+    @apply hidden;
+  }
+
+  .navigation .mobile-nav {
+    color: #DAA520;
+    display: block;
+    @apply text-4xl grid justify-items-end;
   }
 
   .hero {
@@ -297,16 +318,13 @@
 }
 
 @media (max-width: 600px) {
-  .navigation .menu ul .no-mobile {
-    @apply hidden;
-  }
-
   .hero {
     @apply bg-hero-pattern bg-contain bg-no-repeat bg-center p-8 pt-0 pb-16;
   }
   
   .hero h1 {
     @apply text-4xl mt-8;
+    width: 100%;
   } 
 }
 
@@ -358,6 +376,11 @@
 .faq-question {
   @apply col-start-1 col-span-5;
 } 
+
+.faq-answer {
+  @apply text-sm col-span-6 rounded;
+  color: #FFC535;
+}
 
 .faq-show {
   color: #FFC535;
@@ -567,7 +590,56 @@
   @apply text-black;
 }
 
+.head-text:after {
+  content: "";
+  animation-name: head;
+  animation-duration: 34s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes head {
+  0% { content:"Earn over $1000 weekly";}
+  25% { content:"Take control of your financial freedom";}
+  50% { content:"Have you wanted to go to Dubai for free?";}
+  75% { content:"Going to Dubai has never been easier";}
+  100% { content:"Do you know your next 5 moves financially";}
+}
+
+.head-p-text:after {
+  content: "";
+  animation-name: para;
+  animation-duration: 34s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes para {
+  0% { content:"Let the professionals guide you...";}
+  35% { content:"Your financial freedom starts here...";}
+  70% { content:"A unique opportunity awaits you, waste no time";}
+  100% { content:"Receive an absolutely paid for 3day accommodation and flight with many more...";}
+  100% { content:"Let's help you figure them out";}
+}
+
 @media (max-width: 800px) {
+  .mobile-opt {
+    z-index: 10;
+    @apply bg-black h-screen p-12;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  .navigation .menu .mobile-close {
+    color: #FFC535;
+    @apply text-2xl;
+  }
+
+  .navigation .menu ul.mobile-menu {
+    @apply grid grid-cols-1 gap-4 p-12 pr-0;
+  }
+
   .protected-layout .dashboard-summary {
     @apply grid grid-cols-2;
   }
