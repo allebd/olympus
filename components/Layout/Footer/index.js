@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FaTelegramPlane, FaWhatsapp } from 'react-icons/fa';
-import { FiMapPin, FiPhoneCall, FiSend } from 'react-icons/fi';
+import { FiMapPin, FiPhoneCall } from 'react-icons/fi';
 
 export const Footer = () => (
   <div>
@@ -89,7 +89,6 @@ export const Footer = () => (
         <p>Newsletter</p>
         <p className="message">
           Join over 10,000 readers worldwide, and learn how to make money online
-          using the latest insights
         </p>
         <form>
           <label htmlFor="newsletter-email">Enter your email</label>
@@ -99,8 +98,8 @@ export const Footer = () => (
             placeholder="Email"
             required
           />
-          <button type="submit" className="newsletter-icon">
-            <FiSend />
+          <button type="submit" className="button-link newsletter-icon">
+            Subscribe
           </button>
         </form>
       </div>

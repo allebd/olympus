@@ -21,7 +21,7 @@ export const Sidebar = () => (
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="/referrals">
               <a>Referrals</a>
             </Link>
           </li>

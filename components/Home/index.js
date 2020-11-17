@@ -10,10 +10,8 @@ export const Home = () => (
           <div className="hero">
             <Navigation />
             <div>
-              <h1>
-                Earn over $1000 <br /> weekly
-              </h1>
-              <p>Let the professionals guide you...</p>
+              <h1 className="head-text" />
+              <p className="head-p-text" />
               <div>
                 <Link href="/register">
                   <a>
