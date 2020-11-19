@@ -19,7 +19,9 @@
   @apply col-start-1 col-span-1 text-sm pt-1;
 }
 
-.newsletter form input, .form-box .form-group input, .form-box .form-group select {
+.newsletter form input, .form-box .form-group input[type='text'],
+.form-box .form-group input[type='password'], .form-box .form-group input[type='email'],
+.form-box .form-group input[type='number'], .form-box .form-group select {
   @apply rounded-2xl text-sm px-4 pr-12 border-opacity-25 h-8 w-64 text-gray-600;
   border: 1px solid #DAA520;
   box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
@@ -385,6 +387,7 @@
 .faq-show {
   color: #FFC535;
   @apply text-xl justify-self-end col-end-7 col-span-1;
+  cursor: pointer;
 } 
 
 /* End of FAQs page */
@@ -447,8 +450,12 @@
   color: #333333;
 }
 
+.option-pills .option-pill label {
+  @apply px-1;
+}
+
 .option-pills .option-pill {
-  @apply px-3 py-1 rounded-2xl text-center;
+  @apply px-2 py-1 rounded-2xl;
   background: #FFC535;
   border: 1px solid #FFC535;
   box-sizing: border-box;
@@ -456,9 +463,21 @@
   cursor: pointer;
 }
 
-.option-pills .option-pill:hover {
+.option-pills .option-pill input:checked {
   background: #888888;
   color: #ffffff;
+}
+
+.error-message {
+  background: #C53030;
+  text-align: center;
+  @apply rounded w-full p-1 mb-2 text-sm;
+}
+
+.success-message {
+  background: green;
+  text-align: center;
+  @apply rounded w-full p-1 mb-2 text-sm;
 }
 
 .form-button {
