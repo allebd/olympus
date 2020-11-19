@@ -157,10 +157,17 @@ export const Faq = () => {
                     <div>Do I have to pay to join the team?</div>
                   </div>
                   <div className="faq-show">
-                    <i className="faqshow1"><FiPlus /></i>
-                    <i className="faqhide1"><FiMinus /></i>
+                    <i className="faqshow1">
+                      <FiPlus />
+                    </i>
+                    <i className="faqhide1">
+                      <FiMinus />
+                    </i>
                   </div>
-                  <div className="faq-answer faqanswer1">No you don’t need to pay to join us at team Olympus, signing up is totally free on the Olympus website.</div>
+                  <div className="faq-answer faqanswer1">
+                    No you don’t need to pay to join us at team Olympus, signing
+                    up is totally free on the Olympus website.
+                  </div>
                 </div>
               </div>
               <div className="faq-container">
@@ -169,10 +176,17 @@ export const Faq = () => {
                     How can I connect to the team?
                   </div>
                   <div className="faq-show">
-                    <i className="faqshow2"><FiPlus /></i>
-                    <i className="faqhide2"><FiMinus /></i>
+                    <i className="faqshow2">
+                      <FiPlus />
+                    </i>
+                    <i className="faqhide2">
+                      <FiMinus />
+                    </i>
                   </div>
-                  <div className="faq-answer faqanswer2">Simply sign up for free and click the Telegram and WhatsApp links in your back office to join our community.</div>
+                  <div className="faq-answer faqanswer2">
+                    Simply sign up for free and click the Telegram and WhatsApp
+                    links in your back office to join our community.
+                  </div>
                 </div>
               </div>
               <div className="faq-container">
@@ -181,10 +195,20 @@ export const Faq = () => {
                     At what point do I have to spend money?
                   </div>
                   <div className="faq-show">
-                    <i className="faqshow3"><FiPlus /></i>
-                    <i className="faqhide3"><FiMinus /></i>
+                    <i className="faqshow3">
+                      <FiPlus />
+                    </i>
+                    <i className="faqhide3">
+                      <FiMinus />
+                    </i>
                   </div>
-                  <div className="faq-answer faqanswer3">You are only required to put in money after you have been exposed to our  fully transparent investment opportunity which we share 4 times daily via a zoom call. Contact the person who invited you to the website or join our groups in your back office for more details.</div>
+                  <div className="faq-answer faqanswer3">
+                    You are only required to put in money after you have been
+                    exposed to our fully transparent investment opportunity
+                    which we share 4 times daily via a zoom call. Contact the
+                    person who invited you to the website or join our groups in
+                    your back office for more details.
+                  </div>
                 </div>
               </div>
               <div className="faq-container">
@@ -193,22 +217,40 @@ export const Faq = () => {
                     Does your business opportunity require money?
                   </div>
                   <div className="faq-show">
-                    <i className="faqshow4"><FiPlus /></i>
-                    <i className="faqhide4"><FiMinus /></i>
+                    <i className="faqshow4">
+                      <FiPlus />
+                    </i>
+                    <i className="faqhide4">
+                      <FiMinus />
+                    </i>
                   </div>
-                  <div className="faq-answer faqanswer4">Yes every opportunity or business requires a level of financial commitment which you have to make. The only good thing in our case is our opportunity doesn’t require you to pay a membership fee, monthly fee, withdrawal fee or package fee. It’s a free opportunity but to benefit from it you need to invest money.</div>
+                  <div className="faq-answer faqanswer4">
+                    Yes every opportunity or business requires a level of
+                    financial commitment which you have to make. The only good
+                    thing in our case is our opportunity doesn’t require you to
+                    pay a membership fee, monthly fee, withdrawal fee or package
+                    fee. It’s a free opportunity but to benefit from it you need
+                    to invest money.
+                  </div>
                 </div>
               </div>
               <div className="faq-container">
                 <div className="faq-question-section">
                   <div className="faq-question">
-                    What's the minimum investment on your investment opportunity?
+                    What's the minimum investment on your investment
+                    opportunity?
                   </div>
                   <div className="faq-show">
-                    <i className="faqshow5"><FiPlus /></i>
-                    <i className="faqhide5"><FiMinus /></i>
+                    <i className="faqshow5">
+                      <FiPlus />
+                    </i>
+                    <i className="faqhide5">
+                      <FiMinus />
+                    </i>
                   </div>
-                  <div className="faq-answer faqanswer5">You are required to have a minimum of $100 to invest.</div>
+                  <div className="faq-answer faqanswer5">
+                    You are required to have a minimum of $100 to invest.
+                  </div>
                 </div>
               </div>
               <div className="faq-container">
@@ -217,10 +259,18 @@ export const Faq = () => {
                     Can I take out my investment at any time?
                   </div>
                   <div className="faq-show">
-                    <i className="faqshow6"><FiPlus /></i>
-                    <i className="faqhide6"><FiMinus /></i>
+                    <i className="faqshow6">
+                      <FiPlus />
+                    </i>
+                    <i className="faqhide6">
+                      <FiMinus />
+                    </i>
                   </div>
-                  <div className="faq-answer faqanswer6">Yes you can take out all of your investments and walk away at any given time without penalties, our business model is flexible enough to accommodate that.</div>
+                  <div className="faq-answer faqanswer6">
+                    Yes you can take out all of your investments and walk away
+                    at any given time without penalties, our business model is
+                    flexible enough to accommodate that.
+                  </div>
                 </div>
               </div>
               <div className="faq-container">
@@ -229,10 +279,18 @@ export const Faq = () => {
                     Do I need to refer people to make money?
                   </div>
                   <div className="faq-show">
-                    <i className="faqshow7"><FiPlus /></i>
-                    <i className="faqhide7"><FiMinus /></i>
+                    <i className="faqshow7">
+                      <FiPlus />
+                    </i>
+                    <i className="faqhide7">
+                      <FiMinus />
+                    </i>
                   </div>
-                  <div className="faq-answer faqanswer7">No you do not have to refer anyone to make money, but should you wise to do so, the business model would pay you accordingly.</div>
+                  <div className="faq-answer faqanswer7">
+                    No you do not have to refer anyone to make money, but should
+                    you wise to do so, the business model would pay you
+                    accordingly.
+                  </div>
                 </div>
               </div>
             </div>
@@ -241,4 +299,4 @@ export const Faq = () => {
       />
     </div>
   );
-}
+};
