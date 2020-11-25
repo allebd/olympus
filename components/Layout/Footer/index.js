@@ -21,16 +21,7 @@ export const Footer = () => (
               <FiMapPin />
             </div>
             <div>
-              <span>76B Adeniyi Jones, Ikeja, Lagos, Nigeria</span>
-            </div>
-          </li>
-          <li>
-            <div>Connect with us</div>
-            <div className="social">
-              <FaWhatsapp />
-            </div>
-            <div className="social">
-              <FaTelegramPlane />
+              <span>76B Adeniyi Jones, Ikeja, Lagos,<br/> Nigeria</span>
             </div>
           </li>
         </ul>

@@ -5,6 +5,13 @@ import { Navigation } from '../Layout/Navigation';
 
 export const Faq = () => {
   useEffect(() => {
+    const faqshowsect1 = document.querySelector('.faqshowsect1');
+    const faqshowsect2 = document.querySelector('.faqshowsect2');
+    const faqshowsect3 = document.querySelector('.faqshowsect3');
+    const faqshowsect4 = document.querySelector('.faqshowsect4');
+    const faqshowsect5 = document.querySelector('.faqshowsect5');
+    const faqshowsect6 = document.querySelector('.faqshowsect6');
+    const faqshowsect7 = document.querySelector('.faqshowsect7');
     const faqshow1 = document.querySelector('.faqshow1');
     const faqshow2 = document.querySelector('.faqshow2');
     const faqshow3 = document.querySelector('.faqshow3');
@@ -137,6 +144,62 @@ export const Faq = () => {
         faqhide7.style.display = 'none';
       });
     }
+
+    if (faqshowsect1) {
+      faqshowsect1.addEventListener('click', () => {
+        faqanswer1.style.display = 'block';
+        faqhide1.style.display = 'block';
+        faqshow1.style.display = 'none';
+      });
+    }
+
+    if (faqshowsect2) {
+      faqshowsect2.addEventListener('click', () => {
+        faqanswer2.style.display = 'block';
+        faqhide2.style.display = 'block';
+        faqshow2.style.display = 'none';
+      });
+    }
+
+    if (faqshowsect3) {
+      faqshowsect3.addEventListener('click', () => {
+        faqanswer3.style.display = 'block';
+        faqhide3.style.display = 'block';
+        faqshow3.style.display = 'none';
+      });
+    }
+
+    if (faqshowsect4) {
+      faqshowsect4.addEventListener('click', () => {
+        faqanswer4.style.display = 'block';
+        faqhide4.style.display = 'block';
+        faqshow4.style.display = 'none';
+      });
+    }
+
+    if (faqshowsect5) {
+      faqshowsect5.addEventListener('click', () => {
+        faqanswer5.style.display = 'block';
+        faqhide5.style.display = 'block';
+        faqshow5.style.display = 'none';
+      });
+    }
+
+    if (faqshowsect6) {
+      faqshowsect6.addEventListener('click', () => {
+        faqanswer6.style.display = 'block';
+        faqhide6.style.display = 'block';
+        faqshow6.style.display = 'none';
+      });
+    }
+
+    if (faqshowsect7) {
+      faqshowsect7.addEventListener('click', () => {
+        faqanswer7.style.display = 'block';
+        faqhide7.style.display = 'block';
+        faqshow7.style.display = 'none';
+      });
+    }
   }, []);
 
   return (
@@ -153,7 +216,7 @@ export const Faq = () => {
             <div className="faq-details">
               <div className="faq-container">
                 <div className="faq-question-section">
-                  <div className="faq-question">
+                  <div className="faq-question faqshowsect1">
                     <div>Do I have to pay to join the team?</div>
                   </div>
                   <div className="faq-show">
@@ -172,7 +235,7 @@ export const Faq = () => {
               </div>
               <div className="faq-container">
                 <div className="faq-question-section">
-                  <div className="faq-question">
+                  <div className="faq-question faqshowsect2">
                     How can I connect to the team?
                   </div>
                   <div className="faq-show">
@@ -191,7 +254,7 @@ export const Faq = () => {
               </div>
               <div className="faq-container">
                 <div className="faq-question-section">
-                  <div className="faq-question">
+                  <div className="faq-question faqshowsect3">
                     At what point do I have to spend money?
                   </div>
                   <div className="faq-show">
@@ -213,7 +276,7 @@ export const Faq = () => {
               </div>
               <div className="faq-container">
                 <div className="faq-question-section">
-                  <div className="faq-question">
+                  <div className="faq-question faqshowsect4">
                     Does your business opportunity require money?
                   </div>
                   <div className="faq-show">
@@ -236,7 +299,7 @@ export const Faq = () => {
               </div>
               <div className="faq-container">
                 <div className="faq-question-section">
-                  <div className="faq-question">
+                  <div className="faq-question faqshowsect5">
                     What's the minimum investment on your investment
                     opportunity?
                   </div>
@@ -255,7 +318,7 @@ export const Faq = () => {
               </div>
               <div className="faq-container">
                 <div className="faq-question-section">
-                  <div className="faq-question">
+                  <div className="faq-question faqshowsect6">
                     Can I take out my investment at any time?
                   </div>
                   <div className="faq-show">
@@ -275,7 +338,7 @@ export const Faq = () => {
               </div>
               <div className="faq-container">
                 <div className="faq-question-section">
-                  <div className="faq-question">
+                  <div className="faq-question faqshowsect7">
                     Do I need to refer people to make money?
                   </div>
                   <div className="faq-show">

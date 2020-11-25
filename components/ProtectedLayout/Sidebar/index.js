@@ -24,13 +24,13 @@ export const Sidebar = () => {
               </Link>
             </li>
             <li>
-              <Link href="/referrals">
-                <a>Referrals</a>
+              <Link href="/direct">
+                <a>Direct referrals</a>
               </Link>
             </li>
             <li>
-              <Link href="/meetings">
-                <a>Meetings</a>
+              <Link href="/team">
+                <a>Team members</a>
               </Link>
             </li>
             <li>

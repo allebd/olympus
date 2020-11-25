@@ -20,15 +20,16 @@ export const Login = () => {
       password,
     };
 
-    try {
-      auth.signIn(userData);
-      setEmail('');
-      setPassword('');
+    auth.signIn(userData).then((response) => {
+      if (!response.error){
+        setEmail('');
+        setPassword('');
 
-      router.push('/dashboard');
-    } catch (e) {
-      setError(e.message);
-    }
+        return router.push('/dashboard');
+      }
+      return setError("Email/Password is incorrect");
+    })
+    .catch((error) => ({ error }));
   };
 
   return (

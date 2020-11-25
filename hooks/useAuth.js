@@ -37,11 +37,12 @@ const useAuthProvider = () => {
     phoneNumber,
     referralCode,
     investmentAmount,
+    mtiLink
   }) =>
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
-        auth.currentUser.sendEmailVerification();
+        // auth.currentUser.sendEmailVerification();
         return createUser({
           uid: response.user.uid,
           firstName,
@@ -53,6 +54,7 @@ const useAuthProvider = () => {
           phoneNumber,
           referralCode,
           investmentAmount,
+          mtiLink
         });
       })
       .catch((error) => ({ error }));
@@ -84,18 +86,37 @@ const useAuthProvider = () => {
       getUserAdditionalData(user);
     }
   };
+
   useEffect(() => {
     const unsub = auth.onAuthStateChanged(handleAuthStateChanged);
 
     return () => unsub();
   }, []);
 
+  useEffect(() => {
+    if (user?.uid) {
+      // Subscribe to user document on mount
+      const unsubscribe = db
+        .collection('users')
+        .doc(user.uid)
+        .onSnapshot((doc) => setUser(doc.data()));
+      return () => unsubscribe();
+    }
+  }, []);  
+
   const signOut = () => auth.signOut().then(() => setUser(false));
+
+  const sendPasswordResetEmail = (email) => {
+    return auth.sendPasswordResetEmail(email).then((response) => {
+     return response;
+    });
+  };
 
   return {
     user,
     signUp,
     signIn,
     signOut,
+    sendPasswordResetEmail
   };
 };
