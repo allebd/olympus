@@ -36,13 +36,6 @@ export const Home = () => (
               <div className="circle">
                 <p>
                   Over <br />
-                  <span>200</span>
-                  <br /> Customers
-                </p>
-              </div>
-              <div className="circle">
-                <p>
-                  Over <br />
                   <span>$1000</span>
                   <br /> Earned
                 </p>

@@ -7,30 +7,31 @@
 }
 
 /* Start of Layout Component */
-.social {
-  @apply pl-2 text-2xl;
-}
-
 .newsletter form {
-  @apply grid grid-cols-1 gap-2;
+  @apply grid grid-cols-3 gap-2;
 }
 
 .newsletter form label {
-  @apply col-start-1 col-span-1 text-sm pt-1;
+  @apply col-start-1 col-span-3 text-sm pt-1;
+}
+
+.newsletter form input {
+ @apply col-span-2;
 }
 
 .newsletter form input, .form-box .form-group input[type='text'],
 .form-box .form-group input[type='password'], .form-box .form-group input[type='email'],
-.form-box .form-group input[type='number'], .form-box .form-group select {
-  @apply rounded-2xl text-sm px-4 pr-12 border-opacity-25 h-8 w-64 text-gray-600;
+.form-box .form-group input[type='number'], .form-box .form-group input[type='url'],
+.form-box .form-group select {
+  @apply rounded-2xl text-sm px-4 pr-12 border-opacity-25 h-8 w-auto text-gray-600;
   border: 1px solid #DAA520;
   box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
 }
 
 .newsletter form input:focus, .form-box .form-group input:focus,
-.form-box .form-group select:focus, .option-pills .option-pill button:focus {
-  @apply outline-none;
-  box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.6)
+.form-box .form-group select:focus, .option-pills .option-pill button:focus, button:focus {
+  outline: 0;
+  box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.6);
 }
 
 .copyright {
@@ -81,6 +82,7 @@
   position: relative;
   overflow: hidden!important;
   z-index: 10;
+  color: #ffffff;
 }
 
 .button-link:hover {
@@ -145,7 +147,7 @@
 }
 
 .home-details h2 {
-  @apply text-4xl font-hairline mb-8;
+  @apply text-4xl font-hairline mb-8 mt-12;
 }
 
 .home-details .description {
@@ -258,7 +260,7 @@
 }
 
 .footer-container .newsletter .newsletter-icon {
-  @apply w-64;
+  @apply w-auto p-0;
 }
 
 @media (max-width: 1200px) {
@@ -294,10 +296,6 @@
 
   .newsletter form input {
     width: auto;
-  }
-
-  .newsletter form label {
-    @apply col-span-1;
   }
   
   .navigation .menu ul.not-mobile {
@@ -377,6 +375,7 @@
 
 .faq-question {
   @apply col-start-1 col-span-5;
+  cursor: pointer;
 } 
 
 .faq-answer {
@@ -470,12 +469,19 @@
 
 .error-message {
   background: #C53030;
+  color: #ffffff;
   text-align: center;
   @apply rounded w-full p-1 mb-2 text-sm;
 }
 
+.errors-message {
+  color: #C53030;
+  @apply pl-4 text-xs;
+}
+
 .success-message {
   background: green;
+  color: #ffffff;
   text-align: center;
   @apply rounded w-full p-1 mb-2 text-sm;
 }
@@ -528,16 +534,28 @@
 }
 
 .protected-layout .dashboard-summary {
-  @apply grid grid-cols-4 gap-4;
+  @apply grid grid-cols-6 gap-4;
 }
 
 .protected-layout .dashboard-box {
-  @apply p-4 rounded-xl;
+  @apply rounded-xl;
   background: #FFC535;
 }
 
+.dashboard-box-3 {
+  @apply col-span-4;
+}
+
 .protected-layout .dashboard-box-title {
-  @apply grid grid-cols-4 text-sm;
+  @apply grid grid-cols-1 px-4 pt-4 text-sm;
+}
+
+.protected-layout .dashboard-box-button {
+  @apply text-sm text-center py-2 mt-2;
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+  border-bottom-right-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
 }
 
 .protected-layout .dashboard-box-title p {
@@ -545,22 +563,39 @@
 }
 
 .protected-layout .dashboard-box-value {
-  @apply text-2xl font-semibold text-right;
+  @apply text-lg font-semibold px-4 text-right;
+}
+
+.protected-layout .dashboard-box-value p {
+  overflow-wrap: break-word;
 }
 
 .protected-layout .dashboard-section {
-  @apply pt-8 grid grid-cols-3 gap-4;
+  @apply pt-8 grid grid-cols-2 gap-4;
 }
 
-.protected-layout .dashboard-performance {
-  @apply col-span-2;
+.protected-layout .dashboard-news {
   border-right: 1px solid #333333;
+  @apply pr-4;
 }
 
-.protected-layout .dashboard-news li {
+.meeting-section  {
+  @apply grid grid-cols-2 items-center;
+}
+
+.meeting-button  {
+  @apply text-right;
+}
+
+.protected-layout .dashboard-news li, .protected-layout .dashboard-meetings li {
   @apply pt-4 pb-2 text-sm;
   color: #94969A;
   border-bottom: 1px solid #E7E7E7;
+}
+
+.protected-layout .dashboard-news p {
+  color: #94969A;
+  @apply text-sm;
 }
 
 .protected-layout .profile-image {
@@ -635,9 +670,9 @@
 
 @keyframes para {
   0% { content:"Let the professionals guide you...";}
-  35% { content:"Your financial freedom starts here...";}
-  70% { content:"A unique opportunity awaits you, waste no time";}
-  100% { content:"Receive an absolutely paid for 3day accommodation and flight with many more...";}
+  25% { content:"Your financial freedom starts here...";}
+  50% { content:"A unique opportunity awaits you, waste no time";}
+  75% { content:"Receive an absolutely paid for 3day accommodation and flight with many more...";}
   100% { content:"Let's help you figure them out";}
 }
 
@@ -663,13 +698,12 @@
     @apply grid grid-cols-2;
   }
 
-  .protected-layout .dashboard-section {
-    @apply grid grid-cols-1;
+  .dashboard-box-3 {
+    @apply col-span-2;
   }
 
-  .protected-layout .dashboard-performance {
-    @apply col-span-1;
-    border: 0;
+  .protected-layout .dashboard-section {
+    @apply grid grid-cols-1;
   }
 
   .protected-layout .main-section {
@@ -678,6 +712,11 @@
   
   .protected-layout main {
     @apply col-end-5 col-span-3 p-6;
+  }
+
+  .protected-layout .dashboard-news {
+    border-right: 0;
+    @apply pr-0;
   }
 }
 
@@ -692,6 +731,10 @@
 
   .protected-layout .dashboard-summary {
     @apply grid grid-cols-1;
+  }
+
+  .dashboard-box-3 {
+    @apply col-span-1;
   }
 
   .protected-layout .main-section {

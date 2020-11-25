@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import Link from 'next/link';
+import { useRouter } from "next/router";
 import { Layout } from '../Layout';
 import { Navigation } from '../Layout/Navigation';
 import { useAuth } from '../../hooks/useAuth';
 
 export const Register = () => {
+  const { register, errors, handleSubmit, watch } = useForm();
+  const { query: { referral } } = useRouter();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -14,17 +18,25 @@ export const Register = () => {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [referralCode, setReferralCode] = useState('');
+  const [referralCode, setReferralCode] = useState('victor');
   const [investmentAmount, setInvestmentAmount] = useState('');
+  const [mtiLink, setMtiLink] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const auth = useAuth();
+  const newPassword = useRef({});
+  newPassword.current = watch("password", "");
 
-  const handleRegistrationSubmit = (event) => {
+  useEffect(() => {
+    if (referral) {
+      setReferralCode(referral);
+    }
+  }, [referral]);
+
+  const onSubmit = () => {
     if (password !== confirmPassword) {
       setError('Passwords is do not match');
     }
-    event.preventDefault();
 
     const userData = {
       firstName,
@@ -37,25 +49,31 @@ export const Register = () => {
       phoneNumber,
       referralCode,
       investmentAmount,
+      mtiLink
     };
 
     try {
-      auth.signUp(userData);
-      setFirstName('');
-      setLastName('');
-      setUsername('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setCountry('');
-      setState('');
-      setPhoneNumber('');
-      setReferralCode('');
-      setInvestmentAmount('');
+      const checkSignedUp = auth.signUp(userData);
 
-      setTimeout(() => {
-        setSuccess('You have successfully created your account, kindly login');
-      }, 2000);
+      if (checkSignedUp){
+        setFirstName('');
+        setLastName('');
+        setUsername('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setCountry('');
+        setState('');
+        setPhoneNumber('');
+        setReferralCode('');
+        setInvestmentAmount('');
+        document.querySelector("#regform").reset();
+
+        return setTimeout(() => {
+          setSuccess('You have successfully created your account');
+        }, 2000);
+      }
+      return setError(checkSignedUp.error);
     } catch (e) {
       return setError(e.message);
     }
@@ -72,17 +90,16 @@ export const Register = () => {
             <div className="form-box">
               <h1>Create an Account</h1>
               {error && (
-                <div className="error-message">
+                <div className="errors-message">
                   <p>{error}</p>
                 </div>
               )}
-
               {success && (
                 <div className="success-message">
                   <p>{success}</p>
                 </div>
               )}
-              <form onSubmit={handleRegistrationSubmit}>
+              <form onSubmit={handleSubmit(onSubmit)} id="regform">
                 <div className="form-input">
                   <div className="form-group">
                     <label htmlFor="first-name">First Name</label>
@@ -90,10 +107,19 @@ export const Register = () => {
                       id="first-name"
                       type="text"
                       placeholder="First Name"
-                      value={firstName}
-                      onChange={({ target }) => setFirstName(target.value)}
-                      required
+                      defaultValue={firstName}
+                      name="firstname"
+                      onChange={({ target }) => setFirstName(target.value.charAt(0).toUpperCase() + 
+                      target.value.slice(1).toLowerCase())}
+                      ref={register({
+                        required: 'Please enter your first name',      
+                       })}
                     />
+                    {errors.firstname && (
+                      <div className="errors-message">
+                        <p>{errors.firstname.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="last-name">Last Name</label>
@@ -101,10 +127,19 @@ export const Register = () => {
                       id="last-name"
                       type="text"
                       placeholder="Last Name"
-                      value={lastName}
-                      onChange={({ target }) => setLastName(target.value)}
-                      required
+                      defaultValue={lastName}
+                      name="lastname"
+                      onChange={({ target }) => setLastName(target.value.charAt(0).toUpperCase() + 
+                      target.value.slice(1).toLowerCase())}
+                      ref={register({
+                        required: 'Please enter your last name',      
+                       })}
                     />
+                    {errors.lastname && (
+                      <div className="errors-message">
+                        <p>{errors.lastname.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="username">Username</label>
@@ -112,10 +147,18 @@ export const Register = () => {
                       id="username"
                       type="text"
                       placeholder="Username"
-                      value={username}
-                      onChange={({ target }) => setUsername(target.value)}
-                      required
+                      defaultValue={username}
+                      name="username"
+                      onChange={({ target }) => setUsername(target.value.toLowerCase())}
+                      ref={register({
+                        required: 'Please enter a username',      
+                       })}
                     />
+                    {errors.username && (
+                      <div className="errors-message">
+                        <p>{errors.username.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="user-email">Email</label>
@@ -123,10 +166,18 @@ export const Register = () => {
                       id="user-email"
                       type="email"
                       placeholder="Email"
-                      value={email}
-                      onChange={({ target }) => setEmail(target.value)}
-                      required
+                      defaultValue={email}
+                      name="email"
+                      onChange={({ target }) => setEmail(target.value.toLowerCase())}
+                      ref={register({
+                        required: 'Please enter your email',
+                       })}
                     />
+                    {errors.email && (
+                      <div className="errors-message">
+                        <p>{errors.email.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="user-password">Password</label>
@@ -134,10 +185,23 @@ export const Register = () => {
                       id="user-password"
                       type="password"
                       placeholder="Password"
-                      value={password}
-                      onChange={({ target }) => setPassword(target.value)}
-                      required
+                      defaultValue={password}
+                      name="password"
+                      onChange={({ target }) => setPassword(target.value.charAt(0).toUpperCase() + 
+                      target.value.slice(1).toLowerCase())}
+                      ref={register({
+                        required: 'Please enter a password',
+                        minLength: {
+                         value: 6,
+                         message: 'Should have at least 6 characters',
+                        },
+                       })}
                     />
+                    {errors.password && (
+                      <div className="errors-message">
+                        <p>{errors.password.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="confirm-password">Confirm Password</label>
@@ -145,12 +209,27 @@ export const Register = () => {
                       id="confirm-password"
                       type="password"
                       placeholder="Confirm Password"
-                      value={confirmPassword}
+                      defaultValue={confirmPassword}
+                      name="confirmpassword"
                       onChange={({ target }) =>
-                        setConfirmPassword(target.value)
+                        setConfirmPassword(target.value.charAt(0).toUpperCase() + 
+                        target.value.slice(1).toLowerCase())
                       }
-                      required
+                      ref={register({
+                        required: 'Please enter your password again',
+                        minLength: {
+                         value: 6,
+                         message: 'Should have at least 6 characters',
+                        },
+                        validate: value =>
+                              value === newPassword.current || "The passwords do not match"
+                       })}
                     />
+                    {errors.confirmpassword && (
+                      <div className="errors-message">
+                        <p>{errors.confirmpassword.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="country">Country of Residence</label>
@@ -158,10 +237,19 @@ export const Register = () => {
                       id="country"
                       type="text"
                       placeholder="Country"
-                      value={country}
-                      onChange={({ target }) => setCountry(target.value)}
-                      required
+                      defaultValue={country}
+                      name="country"
+                      onChange={({ target }) => setCountry(target.value.charAt(0).toUpperCase() + 
+                      target.value.slice(1).toLowerCase())}
+                      ref={register({
+                        required: 'Please enter your country of residence',      
+                       })}
                     />
+                    {errors.country && (
+                      <div className="errors-message">
+                        <p>{errors.country.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="state">State of Residence</label>
@@ -169,10 +257,19 @@ export const Register = () => {
                       id="state"
                       type="text"
                       placeholder="State"
-                      value={state}
-                      onChange={({ target }) => setState(target.value)}
-                      required
+                      defaultValue={state}
+                      name="state"
+                      onChange={({ target }) => setState(target.value.charAt(0).toUpperCase() + 
+                      target.value.slice(1).toLowerCase())}
+                      ref={register({
+                        required: 'Please enter your state of residence',      
+                       })}
                     />
+                    {errors.state && (
+                      <div className="errors-message">
+                        <p>{errors.state.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="phone-number">Phone No.</label>
@@ -180,10 +277,25 @@ export const Register = () => {
                       id="phone-number"
                       type="number"
                       placeholder="Phone number"
-                      value={phoneNumber}
+                      defaultValue={phoneNumber}
+                      name="phone"
                       onChange={({ target }) => setPhoneNumber(target.value)}
-                      required
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "Phone number is required",
+                        },
+                        minLength: {
+                          value: 11,
+                          message: "Phone number should be minimum length of 11",
+                        },
+                      })}
                     />
+                    {errors.phone && (
+                      <div className="errors-message">
+                        <p>{errors.phone.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="referral-code">Referral Code</label>
@@ -191,9 +303,8 @@ export const Register = () => {
                       id="referral-code"
                       type="text"
                       placeholder="Referral Code"
-                      value={referralCode}
-                      onChange={({ target }) => setReferralCode(target.value)}
-                      required
+                      defaultValue={referralCode}
+                      readOnly
                     />
                   </div>
                   <div className="form-group referral">
@@ -206,7 +317,7 @@ export const Register = () => {
                         <input
                           type="radio"
                           name="pill-check"
-                          value="100 - 999"
+                          defaultValue="100 - 999"
                           checked={investmentAmount === '100 - 999'}
                           onChange={() => setInvestmentAmount('100 - 999')}
                         />
@@ -216,9 +327,10 @@ export const Register = () => {
                         <input
                           type="radio"
                           name="pill-check"
-                          value="1000 - 4999"
+                          defaultValue="1000 - 4999"
                           checked={investmentAmount === '1000 - 4999'}
                           onChange={() => setInvestmentAmount('1000 - 4999')}
+                          required
                         />
                         <label>1000 - 4999</label>
                       </div>
@@ -226,7 +338,7 @@ export const Register = () => {
                         <input
                           type="radio"
                           name="pill-check"
-                          value="5000 - 10,000"
+                          defaultValue="5000 - 10,000"
                           checked={investmentAmount === '5000 - 10,000'}
                           onChange={() => setInvestmentAmount('5000 - 10,000')}
                           required
@@ -237,7 +349,7 @@ export const Register = () => {
                         <input
                           type="radio"
                           name="pill-check"
-                          value="10,000 and above"
+                          defaultValue="10,000 and above"
                           checked={investmentAmount === '10,000 and above'}
                           onChange={() =>
                             setInvestmentAmount('10,000 and above')
