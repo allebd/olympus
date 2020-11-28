@@ -19,7 +19,7 @@
  @apply col-span-2;
 }
 
-.newsletter form input, .form-box .form-group input[type='text'],
+.newsletter form input, .form-box .form-group input[type='text'], .form-box .form-group textarea,
 .form-box .form-group input[type='password'], .form-box .form-group input[type='email'],
 .form-box .form-group input[type='number'], .form-box .form-group input[type='url'],
 .form-box .form-group select {
@@ -28,7 +28,7 @@
   box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.25);
 }
 
-.newsletter form input:focus, .form-box .form-group input:focus,
+.newsletter form input:focus, .form-box .form-group input:focus, .form-box .form-group textarea:focus,
 .form-box .form-group select:focus, .option-pills .option-pill button:focus, button:focus {
   outline: 0;
   box-shadow: 1px 1px 3px 5px rgba(255, 197, 53, 0.6);
@@ -64,7 +64,7 @@
   @apply col-end-7 col-span-2;
 }
 
-.mobile-opt {
+.mobile-opt, .sidebar-mobile-nav {
   display: none;
 }
 /* End of Layout Component */
@@ -309,21 +309,21 @@
   }
 
   .hero {
-    @apply bg-hero-pattern bg-contain bg-no-repeat bg-center p-8 pt-0 pb-16;
+    @apply bg-hero-pattern bg-contain bg-no-repeat bg-center p-4 pt-0 pb-16;
   }
   
   .hero h1 {
-    @apply text-5xl mt-12;
+    @apply text-4xl mt-12;
   } 
 }
 
 @media (max-width: 600px) {
   .hero {
-    @apply bg-hero-pattern bg-contain bg-no-repeat bg-center p-8 pt-0 pb-16;
+    @apply bg-hero-pattern bg-contain bg-no-repeat bg-center p-2 pt-0 pb-16;
   }
   
   .hero h1 {
-    @apply text-4xl mt-8;
+    @apply text-2xl mt-8;
     width: 100%;
   } 
 }
@@ -546,6 +546,10 @@
   @apply col-span-4;
 }
 
+.referrallink-page .dashboard-box-3 {
+  @apply col-span-6;
+}
+
 .protected-layout .dashboard-box-title {
   @apply grid grid-cols-1 px-4 pt-4 text-sm;
 }
@@ -577,6 +581,33 @@
 .protected-layout .dashboard-news {
   border-right: 1px solid #333333;
   @apply pr-4;
+}
+
+.protected-layout .dashboard-news span {
+  @apply text-sm pl-2;
+  color: #888888;
+}
+
+.protected-layout .dashboard-referral {
+  @apply col-span-2;
+  overflow: scroll;
+}
+
+.protected-layout .dashboard-referral table {
+  @apply table-auto border-collapse border border-gray-800 text-sm w-full rounded-xl;
+  background: #e7e7e7;
+  overflow: hidden;
+}
+
+.protected-layout .dashboard-referral table th,
+.protected-layout .dashboard-referral table td 
+{
+  @apply border border-gray-800 text-left p-2;
+}
+
+.protected-layout .dashboard-referral table th {
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
 }
 
 .meeting-section  {
@@ -613,7 +644,7 @@
   border-top-right-radius: 60px;
 }
 
-.protected-layout .sidebar-container ul li {
+.protected-layout .sidebar-container ul li, .sidebar-mobile-nav .mobile-opt ul li {
   @apply pb-2 mb-4;
 }
 
@@ -676,6 +707,31 @@
   100% { content:"Let's help you figure them out";}
 }
 
+.social {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  padding: 10px;
+  margin-bottom: 10px;
+  @apply text-xl items-center;
+  background: #FFC535;
+  z-index: 100;
+}
+
+.social i {
+  @apply text-4xl px-2;
+}
+
+.message-page .dashboard-box-value i {
+  @apply text-6xl;
+}
+
+textarea {
+  height: 100px !important;
+  width: 300px !important;
+}
+
 @media (max-width: 800px) {
   .mobile-opt {
     z-index: 10;
@@ -693,6 +749,44 @@
   .navigation .menu ul.mobile-menu {
     @apply grid grid-cols-1 gap-4 p-12 pr-0;
   }
+  
+  .protected-layout .sidebar-container-extra,
+  .protected-layout .sidebar-container {
+    display: none;
+  }
+
+  .sidebar-mobile-nav, .sidebar-mobile-nav .mobile-nav {
+    display: block;
+    background: #000000;
+    @apply px-4 py-1;
+  }
+
+  .sidebar-mobile-nav .mobile-nav {
+    color: #ffffff;
+    display: flex;
+    @apply items-center;
+  }
+
+  .sidebar-mobile-nav .mobile-opt {
+    z-index: 200;
+    @apply bg-black h-screen p-8 w-2/4;
+    color: #ffffff;
+    position: absolute;
+    top: 80px;
+    left: 0;
+  }
+
+  .sidebar-mobile-nav .mobile-nav i {
+    @apply text-2xl pr-2;
+    color: #DAA520;
+  }
+
+  .sidebar-mobile-nav .mobile-close {
+    color: #FFC535;
+    @apply text-2xl text-right;
+    display: flex;
+    justify-content: flex-end;
+  }
 
   .protected-layout .dashboard-summary {
     @apply grid grid-cols-2;
@@ -707,7 +801,7 @@
   }
 
   .protected-layout .main-section {
-    @apply grid grid-cols-4;
+    @apply grid grid-cols-1;
   }
   
   .protected-layout main {
@@ -722,7 +816,7 @@
 
 @media (max-width: 600px) {
   .protected-layout .navigation {
-    @apply grid grid-cols-1 content-center items-center;
+    @apply grid grid-cols-1 content-center items-center justify-items-center gap-2;
   }
   
   .protected-layout .profile-header {

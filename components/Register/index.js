@@ -1,14 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 import { Layout } from '../Layout';
 import { Navigation } from '../Layout/Navigation';
 import { useAuth } from '../../hooks/useAuth';
 
 export const Register = () => {
   const { register, errors, handleSubmit, watch } = useForm();
-  const { query: { referral } } = useRouter();
+  const {
+    query: { referral },
+  } = useRouter();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -18,14 +20,14 @@ export const Register = () => {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [referralCode, setReferralCode] = useState('victor');
+  const [referralCode, setReferralCode] = useState('olympus');
   const [investmentAmount, setInvestmentAmount] = useState('');
   const [mtiLink, setMtiLink] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const auth = useAuth();
   const newPassword = useRef({});
-  newPassword.current = watch("password", "");
+  newPassword.current = watch('password', '');
 
   useEffect(() => {
     if (referral) {
@@ -49,13 +51,13 @@ export const Register = () => {
       phoneNumber,
       referralCode,
       investmentAmount,
-      mtiLink
+      mtiLink,
     };
 
     try {
       const checkSignedUp = auth.signUp(userData);
 
-      if (checkSignedUp){
+      if (checkSignedUp) {
         setFirstName('');
         setLastName('');
         setUsername('');
@@ -67,7 +69,7 @@ export const Register = () => {
         setPhoneNumber('');
         setReferralCode('');
         setInvestmentAmount('');
-        document.querySelector("#regform").reset();
+        document.querySelector('#regform').reset();
 
         return setTimeout(() => {
           setSuccess('You have successfully created your account');
@@ -109,11 +111,15 @@ export const Register = () => {
                       placeholder="First Name"
                       defaultValue={firstName}
                       name="firstname"
-                      onChange={({ target }) => setFirstName(target.value.charAt(0).toUpperCase() + 
-                      target.value.slice(1).toLowerCase())}
+                      onChange={({ target }) =>
+                        setFirstName(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
+                      }
                       ref={register({
-                        required: 'Please enter your first name',      
-                       })}
+                        required: 'Please enter your first name',
+                      })}
                     />
                     {errors.firstname && (
                       <div className="errors-message">
@@ -129,11 +135,15 @@ export const Register = () => {
                       placeholder="Last Name"
                       defaultValue={lastName}
                       name="lastname"
-                      onChange={({ target }) => setLastName(target.value.charAt(0).toUpperCase() + 
-                      target.value.slice(1).toLowerCase())}
+                      onChange={({ target }) =>
+                        setLastName(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
+                      }
                       ref={register({
-                        required: 'Please enter your last name',      
-                       })}
+                        required: 'Please enter your last name',
+                      })}
                     />
                     {errors.lastname && (
                       <div className="errors-message">
@@ -149,10 +159,12 @@ export const Register = () => {
                       placeholder="Username"
                       defaultValue={username}
                       name="username"
-                      onChange={({ target }) => setUsername(target.value.toLowerCase())}
+                      onChange={({ target }) =>
+                        setUsername(target.value.toLowerCase())
+                      }
                       ref={register({
-                        required: 'Please enter a username',      
-                       })}
+                        required: 'Please enter a username',
+                      })}
                     />
                     {errors.username && (
                       <div className="errors-message">
@@ -168,10 +180,12 @@ export const Register = () => {
                       placeholder="Email"
                       defaultValue={email}
                       name="email"
-                      onChange={({ target }) => setEmail(target.value.toLowerCase())}
+                      onChange={({ target }) =>
+                        setEmail(target.value.toLowerCase())
+                      }
                       ref={register({
                         required: 'Please enter your email',
-                       })}
+                      })}
                     />
                     {errors.email && (
                       <div className="errors-message">
@@ -187,15 +201,19 @@ export const Register = () => {
                       placeholder="Password"
                       defaultValue={password}
                       name="password"
-                      onChange={({ target }) => setPassword(target.value.charAt(0).toUpperCase() + 
-                      target.value.slice(1).toLowerCase())}
+                      onChange={({ target }) =>
+                        setPassword(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
+                      }
                       ref={register({
                         required: 'Please enter a password',
                         minLength: {
-                         value: 6,
-                         message: 'Should have at least 6 characters',
+                          value: 6,
+                          message: 'Should have at least 6 characters',
                         },
-                       })}
+                      })}
                     />
                     {errors.password && (
                       <div className="errors-message">
@@ -212,18 +230,21 @@ export const Register = () => {
                       defaultValue={confirmPassword}
                       name="confirmpassword"
                       onChange={({ target }) =>
-                        setConfirmPassword(target.value.charAt(0).toUpperCase() + 
-                        target.value.slice(1).toLowerCase())
+                        setConfirmPassword(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
                       }
                       ref={register({
                         required: 'Please enter your password again',
                         minLength: {
-                         value: 6,
-                         message: 'Should have at least 6 characters',
+                          value: 6,
+                          message: 'Should have at least 6 characters',
                         },
-                        validate: value =>
-                              value === newPassword.current || "The passwords do not match"
-                       })}
+                        validate: (value) =>
+                          value === newPassword.current ||
+                          'The passwords do not match',
+                      })}
                     />
                     {errors.confirmpassword && (
                       <div className="errors-message">
@@ -239,11 +260,15 @@ export const Register = () => {
                       placeholder="Country"
                       defaultValue={country}
                       name="country"
-                      onChange={({ target }) => setCountry(target.value.charAt(0).toUpperCase() + 
-                      target.value.slice(1).toLowerCase())}
+                      onChange={({ target }) =>
+                        setCountry(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
+                      }
                       ref={register({
-                        required: 'Please enter your country of residence',      
-                       })}
+                        required: 'Please enter your country of residence',
+                      })}
                     />
                     {errors.country && (
                       <div className="errors-message">
@@ -259,11 +284,15 @@ export const Register = () => {
                       placeholder="State"
                       defaultValue={state}
                       name="state"
-                      onChange={({ target }) => setState(target.value.charAt(0).toUpperCase() + 
-                      target.value.slice(1).toLowerCase())}
+                      onChange={({ target }) =>
+                        setState(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
+                      }
                       ref={register({
-                        required: 'Please enter your state of residence',      
-                       })}
+                        required: 'Please enter your state of residence',
+                      })}
                     />
                     {errors.state && (
                       <div className="errors-message">
@@ -283,11 +312,12 @@ export const Register = () => {
                       ref={register({
                         required: {
                           value: true,
-                          message: "Phone number is required",
+                          message: 'Phone number is required',
                         },
                         minLength: {
                           value: 11,
-                          message: "Phone number should be minimum length of 11",
+                          message:
+                            'Phone number should be minimum length of 11',
                         },
                       })}
                     />

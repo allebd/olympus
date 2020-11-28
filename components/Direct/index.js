@@ -2,15 +2,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ProtectedLayout } from '../ProtectedLayout';
 import { useRequireAuth } from '../../hooks/useRequireAuth';
-import messageService from '../../hooks/useMessageService';
 import userService from '../../hooks/useUserService';
 
-export const Dashboard = () => {
+export const Direct = () => {
   const auth = useRequireAuth();
   const { user } = auth;
-  const [messageList, setMessageList] = useState([]);
-  const [messageSliceList, setMessageSliceList] = useState([]);
-  const [mtiLink, setMtiLink] = useState('');
+  const [username, setUsername] = useState('');
   const [userList, setUserList] = useState([]);
   const [userFilterList, setUserFilterList] = useState([]);
   const [userFilterListFinal, setUserFilterListFinal] = useState([]);
@@ -26,27 +23,13 @@ export const Dashboard = () => {
   const [userFilterList9, setUserFilterList9] = useState([]);
   const [userFilterList10, setUserFilterList10] = useState([]);
   const userServer = userService();
-  const messageServer = messageService();
-  const getAllMessages = messageServer.getAllMessages();
   const getAllUsers = userServer.getAllUsers();
 
   useEffect(() => {
     if (auth.user) {
-      setMtiLink(user.mtiLink);
+      setUsername(user.username);
     }
   }, [auth, user]);
-
-  useEffect(() => {
-    getAllMessages.onSnapshot((snap) => {
-      const messages = snap.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setMessageList(messages);
-      const sliceMessage = messageList.slice(0, 5);
-      setMessageSliceList(sliceMessage);
-    });
-  }, [getAllMessages, messageList]);
 
   useEffect(() => {
     getAllUsers.onSnapshot((snap) => {
@@ -229,7 +212,7 @@ export const Dashboard = () => {
       <ProtectedLayout
         content={
           <div className="dashboard-content">
-            <h3>Dashboard</h3>
+            <h3>Direct Referrals</h3>
             <div className="dashboard-summary">
               <div className="dashboard-box">
                 <div className="dashboard-box-title">
@@ -259,106 +242,48 @@ export const Dashboard = () => {
               </div>
               <div className="dashboard-box dashboard-box-3">
                 <div className="dashboard-box-title">
-                  <p>My MTI Link</p>
+                  <p>Olympus Link</p>
                 </div>
                 <div className="dashboard-box-value">
-                  <p>{mtiLink || <p>&nbsp;</p>}</p>
+                  <p>{`http://olympus.ng/register?referral=${username}`}</p>
                 </div>
                 <div className="dashboard-box-button">
                   <Link href="/profile">
-                    <a>Update details</a>
+                    <a>View details</a>
                   </Link>
                 </div>
               </div>
             </div>
             <div className="dashboard-section">
-              <div className="dashboard-news">
-                <h3>
-                  News &amp; Updates
-                  <span>
-                    <Link href="/news">
-                      <a>(View All)</a>
-                    </Link>
-                  </span>
-                </h3>
-                {messageList.length ? (
-                  <ul>
-                    {messageSliceList.map((message) => (
-                      <li key={message.id}>{message.description}</li>
-                    ))}
-                  </ul>
+              <div className="dashboard-referral">
+                {userFilterList.length ? (
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>MTI Link</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {userFilterList.map((user) => (
+                        <tr>
+                          <td>{user.username}</td>
+                          <td>{user.firstName}</td>
+                          <td>{user.lastName}</td>
+                          <td>{user.email}</td>
+                          <td>{user.phoneNumber}</td>
+                          <td>{user.mtiLink}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 ) : (
-                  <p>No messages</p>
+                  <p>No direct referral</p>
                 )}
-              </div>
-              <div className="dashboard-meetings">
-                <h3>Meetings</h3>
-                <ul>
-                  <li>
-                    <div className="meeting-section">
-                      <div className="meeting-message">
-                        9am CAT +1 <strong>(Opportunity Overview)</strong>
-                      </div>
-                      <div className="meeting-button">
-                        <Link href="https://zoom.us/j/96544248413">
-                          <a target="_blank">
-                            <button type="button" className="button-link">
-                              Join
-                            </button>
-                          </a>
-                        </Link>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="meeting-section">
-                      <div className="meeting-message">
-                        2pm CAT +1 <strong>(Opportunity Overview)</strong>
-                      </div>
-                      <div className="meeting-button">
-                        <Link href="https://zoom.us/j/96544248413">
-                          <a target="_blank">
-                            <button type="button" className="button-link">
-                              Join
-                            </button>
-                          </a>
-                        </Link>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="meeting-section">
-                      <div className="meeting-message">
-                        6pm CAT +1 <strong>(Opportunity Overview)</strong>
-                      </div>
-                      <div className="meeting-button">
-                        <Link href="https://zoom.us/j/96544248413">
-                          <a target="_blank">
-                            <button type="button" className="button-link">
-                              Join
-                            </button>
-                          </a>
-                        </Link>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="meeting-section">
-                      <div className="meeting-message">
-                        9pm CAT +1 <strong>(Team Olympus Group Call)</strong>
-                      </div>
-                      <div className="meeting-button">
-                        <Link href="https://us02web.zoom.us/j/4966422805?pwd=NGhaS2F0c2tibVJtRmZGZTFXTTFkQT09">
-                          <a target="_blank">
-                            <button type="button" className="button-link">
-                              Join
-                            </button>
-                          </a>
-                        </Link>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>

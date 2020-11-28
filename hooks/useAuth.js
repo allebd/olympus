@@ -37,13 +37,13 @@ const useAuthProvider = () => {
     phoneNumber,
     referralCode,
     investmentAmount,
-    mtiLink
+    mtiLink,
   }) =>
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
+      .then((response) =>
         // auth.currentUser.sendEmailVerification();
-        return createUser({
+        createUser({
           uid: response.user.uid,
           firstName,
           lastName,
@@ -54,9 +54,9 @@ const useAuthProvider = () => {
           phoneNumber,
           referralCode,
           investmentAmount,
-          mtiLink
-        });
-      })
+          mtiLink,
+        })
+      )
       .catch((error) => ({ error }));
 
   const signIn = ({ email, password }) =>
@@ -102,21 +102,18 @@ const useAuthProvider = () => {
         .onSnapshot((doc) => setUser(doc.data()));
       return () => unsubscribe();
     }
-  }, []);  
+  }, []);
 
   const signOut = () => auth.signOut().then(() => setUser(false));
 
-  const sendPasswordResetEmail = (email) => {
-    return auth.sendPasswordResetEmail(email).then((response) => {
-     return response;
-    });
-  };
+  const sendPasswordResetEmail = (email) =>
+    auth.sendPasswordResetEmail(email).then((response) => response);
 
   return {
     user,
     signUp,
     signIn,
     signOut,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
   };
 };

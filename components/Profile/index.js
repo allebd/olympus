@@ -1,8 +1,8 @@
-import { ProtectedLayout } from '../ProtectedLayout';
-import { useRequireAuth } from '../../hooks/useRequireAuth';
-import userService  from '../../hooks/useUserService';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { ProtectedLayout } from '../ProtectedLayout';
+import { useRequireAuth } from '../../hooks/useRequireAuth';
+import userService from '../../hooks/useUserService';
 
 export const Profile = () => {
   useRequireAuth();
@@ -21,9 +21,9 @@ export const Profile = () => {
   const [mtiLink, setMtiLink] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  
+
   useEffect(() => {
-    if (auth.user){
+    if (auth.user) {
       setFirstName(user.firstName);
       setLastName(user.lastName);
       setUsername(user.username);
@@ -34,7 +34,7 @@ export const Profile = () => {
       setReferralCode(user.referralCode);
       setMtiLink(user.mtiLink);
     }
-  }, [auth]);
+  }, [auth, user]);
 
   const onSubmit = () => {
     const userData = {
@@ -44,7 +44,7 @@ export const Profile = () => {
       country,
       state,
       phoneNumber,
-      mtiLink
+      mtiLink,
     };
     try {
       const updateUser = userServer.updateUser(user.uid, userData);
@@ -55,9 +55,9 @@ export const Profile = () => {
       }
       return setError(updateUser.error);
     } catch (e) {
-        return setError(e.message);
-      }
-    };
+      return setError(e.message);
+    }
+  };
 
   return (
     <div>
@@ -86,11 +86,15 @@ export const Profile = () => {
                       placeholder="First Name"
                       defaultValue={firstName}
                       name="firstname"
-                      onChange={({ target }) => setFirstName(target.value.charAt(0).toUpperCase() + 
-                      target.value.slice(1).toLowerCase())}
+                      onChange={({ target }) =>
+                        setFirstName(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
+                      }
                       ref={register({
-                        required: 'Please enter your first name',      
-                       })}
+                        required: 'Please enter your first name',
+                      })}
                     />
                     {errors.firstname && (
                       <div className="errors-message">
@@ -106,11 +110,15 @@ export const Profile = () => {
                       placeholder="Last Name"
                       defaultValue={lastName}
                       name="lastname"
-                      onChange={({ target }) => setLastName(target.value.charAt(0).toUpperCase() + 
-                      target.value.slice(1).toLowerCase())}
+                      onChange={({ target }) =>
+                        setLastName(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
+                      }
                       ref={register({
-                        required: 'Please enter your last name',      
-                       })}
+                        required: 'Please enter your last name',
+                      })}
                     />
                     {errors.lastname && (
                       <div className="errors-message">
@@ -146,11 +154,15 @@ export const Profile = () => {
                       placeholder="Country"
                       defaultValue={country}
                       name="country"
-                      onChange={({ target }) => setCountry(target.value.charAt(0).toUpperCase() + 
-                      target.value.slice(1).toLowerCase())}
+                      onChange={({ target }) =>
+                        setCountry(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
+                      }
                       ref={register({
-                        required: 'Please enter your country of residence',      
-                       })}
+                        required: 'Please enter your country of residence',
+                      })}
                     />
                     {errors.country && (
                       <div className="errors-message">
@@ -166,11 +178,15 @@ export const Profile = () => {
                       placeholder="State"
                       defaultValue={state}
                       name="state"
-                      onChange={({ target }) => setState(target.value.charAt(0).toUpperCase() + 
-                      target.value.slice(1).toLowerCase())}
+                      onChange={({ target }) =>
+                        setState(
+                          target.value.charAt(0).toUpperCase() +
+                            target.value.slice(1).toLowerCase()
+                        )
+                      }
                       ref={register({
-                        required: 'Please enter your state of residence',      
-                       })}
+                        required: 'Please enter your state of residence',
+                      })}
                     />
                     {errors.state && (
                       <div className="errors-message">
@@ -190,11 +206,12 @@ export const Profile = () => {
                       ref={register({
                         required: {
                           value: true,
-                          message: "Phone number is required",
+                          message: 'Phone number is required',
                         },
                         minLength: {
                           value: 11,
-                          message: "Phone number should be minimum length of 11",
+                          message:
+                            'Phone number should be minimum length of 11',
                         },
                       })}
                     />
@@ -215,9 +232,7 @@ export const Profile = () => {
                     />
                   </div>
                   <div className="form-group referral">
-                    <label htmlFor="mti-link">
-                      MTI Link
-                    </label>
+                    <label htmlFor="mti-link">MTI Link</label>
                     <input
                       id="mti-link"
                       type="url"
@@ -225,6 +240,16 @@ export const Profile = () => {
                       defaultValue={mtiLink}
                       name="mtiLink"
                       onChange={({ target }) => setMtiLink(target.value)}
+                    />
+                  </div>
+                  <div className="form-group referral">
+                    <label htmlFor="olympus-link">Olympus Link</label>
+                    <input
+                      id="olympus-link"
+                      type="url"
+                      placeholder="Olympus Link"
+                      value={`http://olympus.ng/register?referral=${username}`}
+                      readOnly
                     />
                   </div>
                   <div className="form-button">
@@ -239,5 +264,5 @@ export const Profile = () => {
         }
       />
     </div>
-  )
+  );
 };
