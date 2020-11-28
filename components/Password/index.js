@@ -10,24 +10,6 @@ export const Password = () => (
             <form>
               <div className="form-input">
                 <div className="form-group">
-                  <label htmlFor="username">Username</label>
-                  <input
-                    id="username"
-                    type="text"
-                    placeholder="Username"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="old-password">Old Password</label>
-                  <input
-                    id="old-password"
-                    type="password"
-                    placeholder="Old Password"
-                    required
-                  />
-                </div>
-                <div className="form-group">
                   <label htmlFor="new-password">New Password</label>
                   <input
                     id="new-password"

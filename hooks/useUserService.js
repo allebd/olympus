@@ -1,35 +1,25 @@
 import { db } from '../config/fire-config';
 
-const userDb = db.collection("users");
+const userDb = db.collection('users');
 
 const userService = () => {
-  const getAllUsers = () => {
-    return userDb;
-  }
+  const getAllUsers = () => userDb;
 
-  const createUser = (user) => {
-    return userDb.push(user);
-  }
+  const createUser = (user) => userDb.push(user);
 
-  const updateUser = (key, value) => {
-    return userDb.doc(key).set(value);
-  }
+  const updateUser = (key, value) => userDb.doc(key).set(value);
 
-  const deleteUser = (key) => {
-    return userDb.doc(key).delete();
-  }
+  const deleteUser = (key) => userDb.doc(key).delete();
 
-  const deleteAll = () => {
-    return userDb.delete();
-  }
+  const deleteAll = () => userDb.delete();
 
   return {
     getAllUsers,
     createUser,
     updateUser,
     deleteUser,
-    deleteAll
-  }
-}
+    deleteAll,
+  };
+};
 
 export default userService;

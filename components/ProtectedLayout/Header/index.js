@@ -10,7 +10,7 @@ export const Header = () => {
     <div>
       <div className="navigation">
         <div className="logo">
-          <Link href="/">
+          <Link href="/dashboard">
             <a>
               <img
                 src="/assets/images/Logo.svg"

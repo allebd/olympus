@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { FaTelegramPlane, FaWhatsapp } from 'react-icons/fa';
 import { FiMapPin, FiPhoneCall } from 'react-icons/fi';
 
 export const Footer = () => (
@@ -21,7 +20,10 @@ export const Footer = () => (
               <FiMapPin />
             </div>
             <div>
-              <span>76B Adeniyi Jones, Ikeja, Lagos,<br/> Nigeria</span>
+              <span>
+                76B Adeniyi Jones, Ikeja, Lagos,
+                <br /> Nigeria
+              </span>
             </div>
           </li>
         </ul>
