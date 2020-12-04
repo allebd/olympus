@@ -27,12 +27,12 @@ export const Referrallink = () => {
         ...doc.data(),
       }));
       setUserList(users);
-      const filterUsers = userList.filter(
+      const filterUsers = users.filter(
         (filterUser) => filterUser.referralCode === user.username
       );
       setUserFilterList(filterUsers);
     });
-  }, [getAllUsers]);
+  }, [getAllUsers, user]);
 
   return (
     <div>
@@ -51,14 +51,14 @@ export const Referrallink = () => {
                   <p>Olympus Link</p>
                 </div>
                 <div className="dashboard-box-value">
-                  <p>{`http://olympus.ng/register?referral=${username}`}</p>
+                  <p>{`https://olympus.ng/register?referral=${username}`}</p>
                 </div>
                 <div className="dashboard-box-button">
                   <CopyToClipboard
-                    text={`http://olympus.ng/register?referral=${username}`}
+                    text={`https://olympus.ng/register?referral=${username}`}
                     onCopy={() => setCopy(true)}
                   >
-                    <button>Copy Olympus Link</button>
+                    <button type="button">Copy Olympus Link</button>
                   </CopyToClipboard>
                 </div>
               </div>

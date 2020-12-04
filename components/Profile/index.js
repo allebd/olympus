@@ -248,7 +248,7 @@ export const Profile = () => {
                       id="olympus-link"
                       type="url"
                       placeholder="Olympus Link"
-                      value={`http://olympus.ng/register?referral=${username}`}
+                      value={`https://olympus.ng/register?referral=${username}`}
                       readOnly
                     />
                   </div>

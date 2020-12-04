@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CgTrash } from 'react-icons/cg';
 import { ProtectedLayout } from '../ProtectedLayout';
 import { useRequireAuth } from '../../hooks/useRequireAuth';
 import userService from '../../hooks/useUserService';
@@ -20,18 +22,24 @@ export const Allteam = () => {
   }, [auth, user]);
 
   useEffect(() => {
-    getAllUsers.onSnapshot((snap) => {
+    getAllUsers.where('username', '!=', 'olympus').onSnapshot((snap) => {
       const users = snap.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setUserList(users);
-      const filterUsers = userList.filter(
+      const filterUsers = users.filter(
         (filterUser) => filterUser.referralCode === user.username
       );
       setUserFilterList(filterUsers);
     });
-  }, [getAllUsers]);
+  });
+
+  const handleDelete = (id) => {
+    userServer.deleteUser(id);
+
+    alert('User deleted');
+  };
 
   return (
     <div>
@@ -42,10 +50,10 @@ export const Allteam = () => {
             <div className="dashboard-summary">
               <div className="dashboard-box">
                 <div className="dashboard-box-title">
-                  <p>Total Team members</p>
+                  <p>Total members</p>
                 </div>
                 <div className="dashboard-box-value">
-                  <p>{userFilterList.length}</p>
+                  <p>{userList.length}</p>
                 </div>
                 <div className="dashboard-box-button">
                   <Link href="/team">
@@ -71,7 +79,7 @@ export const Allteam = () => {
                   <p>Olympus Link</p>
                 </div>
                 <div className="dashboard-box-value">
-                  <p>{`http://olympus.ng/register?referral=${username}`}</p>
+                  <p>{`https://olympus.ng/register?referral=${username}`}</p>
                 </div>
                 <div className="dashboard-box-button">
                   <Link href="/profile">
@@ -87,24 +95,71 @@ export const Allteam = () => {
                     <thead>
                       <tr>
                         <th>Username</th>
+                        <th>Sponsor</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
+                        <th>&nbsp;</th>
                         <th>MTI Link</th>
+                        <th>&nbsp;</th>
+                        <th>Olympus Link</th>
+                        <th>&nbsp;</th>
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {userList.map((user) => (
-                        <tr>
-                          <td>{user.username}</td>
-                          <td>{user.firstName}</td>
-                          <td>{user.lastName}</td>
-                          <td>{user.email}</td>
-                          <td>{user.phoneNumber}</td>
-                          <td>{user.mtiLink}</td>
-                        </tr>
-                      ))}
+                      {userList.map((userL) => {
+                        if (userL.username !== username) {
+                          return (
+                            <tr>
+                              <td>{userL.username}</td>
+                              <td>{userL.referralCode}</td>
+                              <td>{userL.firstName}</td>
+                              <td>{userL.lastName}</td>
+                              <td>{userL.email}</td>
+                              <td>{userL.phoneNumber}</td>
+                              <td className="copy-box">
+                                <CopyToClipboard
+                                  text={userL.phoneNumber}
+                                  onCopy={() => alert('Phone Number copied')}
+                                >
+                                  <p>Copy</p>
+                                </CopyToClipboard>
+                              </td>
+                              <td>{userL.mtiLink}</td>
+                              <td className="copy-box">
+                                <CopyToClipboard
+                                  text={userL.mtiLink}
+                                  onCopy={() => alert('MTI Link copied')}
+                                >
+                                  <p>Copy</p>
+                                </CopyToClipboard>
+                              </td>
+                              <td>{`https://olympus.ng/register?referral=${userL.username}`}</td>
+                              <td className="copy-box">
+                                <CopyToClipboard
+                                  text={`https://olympus.ng/register?referral=${userL.username}`}
+                                  onCopy={() => alert('Olympus Link copied')}
+                                >
+                                  <p>Copy</p>
+                                </CopyToClipboard>
+                              </td>
+                              <td>
+                                <i>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleDelete(userL.id)}
+                                  >
+                                    <CgTrash />
+                                  </button>
+                                </i>
+                              </td>
+                            </tr>
+                          );
+                        }
+                        return true;
+                      })}
                     </tbody>
                   </table>
                 ) : (

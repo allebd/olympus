@@ -7,9 +7,7 @@ import messageService from '../../hooks/useMessageService';
 
 export const AddMessage = () => {
   useRequireAuth();
-  const auth = useRequireAuth();
   const messageServer = messageService();
-  const { user } = auth;
   const { register, errors, handleSubmit } = useForm();
   const [description, setDescription] = useState('');
   const [error, setError] = useState('');
@@ -52,7 +50,7 @@ export const AddMessage = () => {
               <form onSubmit={handleSubmit(onSubmit)} id="regform">
                 <div className="form-input">
                   <div className="form-group referral">
-                    <label htmlFor="olympus-msg">Message</label>
+                    <label htmlFor="olympusmsg">Message</label>
                     <textarea
                       id="olympus-msg"
                       type="url"

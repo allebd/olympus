@@ -2,15 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { VscLoading } from 'react-icons/vsc';
 import { Layout } from '../Layout';
 import { Navigation } from '../Layout/Navigation';
 import { useAuth } from '../../hooks/useAuth';
+import userService from '../../hooks/useUserService';
 
 export const Register = () => {
   const { register, errors, handleSubmit, watch } = useForm();
+  const router = useRouter();
+  const userServer = userService();
   const {
     query: { referral },
-  } = useRouter();
+  } = router;
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -25,6 +29,7 @@ export const Register = () => {
   const [mtiLink, setMtiLink] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const auth = useAuth();
   const newPassword = useRef({});
   newPassword.current = watch('password', '');
@@ -39,6 +44,9 @@ export const Register = () => {
     if (password !== confirmPassword) {
       setError('Passwords is do not match');
     }
+    setSuccess('');
+    setError('');
+    setIsLoading(true);
 
     const userData = {
       firstName,
@@ -54,31 +62,44 @@ export const Register = () => {
       mtiLink,
     };
 
-    try {
-      const checkSignedUp = auth.signUp(userData);
+    const checkForUsername = userServer.checkForUsername(username);
 
-      if (checkSignedUp) {
-        setFirstName('');
-        setLastName('');
-        setUsername('');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-        setCountry('');
-        setState('');
-        setPhoneNumber('');
-        setReferralCode('');
-        setInvestmentAmount('');
-        document.querySelector('#regform').reset();
+    checkForUsername.onSnapshot(function (querySnapshot) {
+      const allUsernames = [];
+      querySnapshot.forEach(function (doc) {
+        allUsernames.push(doc.data().username);
+      });
 
-        return setTimeout(() => {
-          setSuccess('You have successfully created your account');
-        }, 2000);
+      if (!allUsernames.length) {
+        auth
+          .signUp(userData)
+          .then((response) => {
+            const { error } = response;
+
+            if (!error) {
+              setFirstName('');
+              setLastName('');
+              setUsername('');
+              setEmail('');
+              setPassword('');
+              setConfirmPassword('');
+              setCountry('');
+              setState('');
+              setPhoneNumber('');
+              setReferralCode('');
+              setInvestmentAmount('');
+              document.querySelector('#regform').reset();
+              setIsLoading(false);
+              return router.push('/login?register=success');
+            }
+            setIsLoading(false);
+            return setError(error.message);
+          })
+          .catch((error) => ({ error }));
       }
-      return setError(checkSignedUp.error);
-    } catch (e) {
-      return setError(e.message);
-    }
+      setIsLoading(false);
+      return setError('Username already exists');
+    });
   };
 
   return (
@@ -92,7 +113,7 @@ export const Register = () => {
             <div className="form-box">
               <h1>Create an Account</h1>
               {error && (
-                <div className="errors-message">
+                <div className="error-message">
                   <p>{error}</p>
                 </div>
               )}
@@ -392,7 +413,11 @@ export const Register = () => {
                   </div>
                   <div className="form-button">
                     <button type="submit" className="button-link">
-                      Sign Up
+                      {isLoading ? (
+                        <VscLoading className="icon-spin" />
+                      ) : (
+                        'Sign Up'
+                      )}
                     </button>
                   </div>
                 </div>

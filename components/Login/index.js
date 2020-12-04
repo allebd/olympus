@@ -1,38 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { VscLoading } from 'react-icons/vsc';
 import { Layout } from '../Layout';
 import { Navigation } from '../Layout/Navigation';
 import { useAuth } from '../../hooks/useAuth';
+import userService from '../../hooks/useUserService';
 
 export const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
+  let email = '';
   const auth = useAuth();
   const router = useRouter();
+  const userServer = userService();
+  const {
+    query: { register },
+  } = router;
+
+  useEffect(() => {
+    if (register) {
+      setSuccess('Your registration was successful, kindly login');
+    }
+  }, [register]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const userData = {
-      email,
-      password,
-    };
+    setSuccess('');
+    setError('');
+    setIsLoading(true);
 
-    auth
-      .signIn(userData)
-      .then((response) => {
-        console.log(response);
-        if (!response.error) {
-          setEmail('');
-          setPassword('');
+    const checkForUsername = userServer.checkForUsername(username);
 
-          return router.push('/dashboard');
-        }
-        return setError('Email/Password is incorrect');
-      })
-      .catch((error) => ({ error }));
+    checkForUsername.onSnapshot(function (querySnapshot) {
+      const allEmails = [];
+      querySnapshot.forEach(function (doc) {
+        allEmails.push(doc.data().email);
+        email = doc.data().email;
+      });
+
+      if (!allEmails.length) {
+        setIsLoading(false);
+        return setError('Username/Password is incorrect');
+      }
+
+      const userData = {
+        email,
+        password,
+      };
+
+      auth
+        .signIn(userData)
+        .then((response) => {
+          if (!response.error) {
+            setUsername('');
+            setPassword('');
+            setIsLoading(false);
+            return router.push('/dashboard');
+          }
+          setIsLoading(false);
+          return setError('Username/Password is incorrect');
+        })
+        .catch((error) => ({ error }));
+    });
   };
 
   return (
@@ -50,16 +84,21 @@ export const Login = () => {
                   <p>{error}</p>
                 </div>
               )}
+              {success && (
+                <div className="success-message">
+                  <p>{success}</p>
+                </div>
+              )}
               <form onSubmit={handleSubmit}>
                 <div className="form-input">
                   <div className="form-group">
-                    <label htmlFor="user-email">Email</label>
+                    <label htmlFor="username">Username</label>
                     <input
-                      id="user-email"
-                      type="email"
-                      placeholder="Email"
-                      value={email}
-                      onChange={({ target }) => setEmail(target.value)}
+                      id="username"
+                      type="text"
+                      placeholder="Username"
+                      value={username}
+                      onChange={({ target }) => setUsername(target.value)}
                       required
                     />
                   </div>
@@ -76,7 +115,11 @@ export const Login = () => {
                   </div>
                   <div className="form-button">
                     <button type="submit" className="button-link">
-                      Sign In
+                      {isLoading ? (
+                        <VscLoading className="icon-spin" />
+                      ) : (
+                        'Sign In'
+                      )}
                     </button>
                   </div>
                 </div>

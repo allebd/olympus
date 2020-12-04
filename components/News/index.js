@@ -17,7 +17,7 @@ export const News = () => {
       }));
       setMessageList(messages);
     });
-  }, []);
+  });
 
   return (
     <div>
