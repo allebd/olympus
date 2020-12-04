@@ -55,142 +55,212 @@ export const Dashboard = () => {
         ...doc.data(),
       }));
       setUserList(users);
-      const filterUsers = userList.filter(
+      const filterUsers = users.filter(
         (filterUser) => filterUser.referralCode === user.username
       );
       setUserFilterList(filterUsers);
     });
-  }, [getAllUsers]);
+  });
 
   useEffect(() => {
     if (userFilterList) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList1(filteredUsers);
     }
-  }, [userFilterList]);
+  }, [userList, userFilterList]);
 
   useEffect(() => {
     if (userFilterList1) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList1.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList1.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList2(filteredUsers);
     }
-  }, [userFilterList1]);
+  }, [userList, userFilterList1]);
 
   useEffect(() => {
     if (userFilterList2) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList2.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList2.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList3(filteredUsers);
     }
-  }, [userFilterList2]);
+  }, [userList, userFilterList2]);
 
   useEffect(() => {
     if (userFilterList3) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList3.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList3.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList4(filteredUsers);
     }
-  }, [userFilterList3]);
+  }, [userList, userFilterList3]);
 
   useEffect(() => {
     if (userFilterList4) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList4.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList4.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList5(filteredUsers);
     }
-  }, [userFilterList4]);
+  }, [userList, userFilterList4]);
 
   useEffect(() => {
     if (userFilterList5) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList5.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList5.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList6(filteredUsers);
     }
-  }, [userFilterList5]);
+  }, [userList, userFilterList5]);
 
   useEffect(() => {
     if (userFilterList6) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList6.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList6.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList7(filteredUsers);
     }
-  }, [userFilterList6]);
+  }, [userList, userFilterList6]);
 
   useEffect(() => {
     if (userFilterList7) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList7.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList7.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList8(filteredUsers);
     }
-  }, [userFilterList7]);
+  }, [userList, userFilterList7]);
 
   useEffect(() => {
     if (userFilterList8) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList8.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList8.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList9(filteredUsers);
     }
-  }, [userFilterList8]);
+  }, [userList, userFilterList8]);
 
   useEffect(() => {
     if (userFilterList9) {
       const filteredUsers = [];
-      userList.map((selectUser) => {
-        const filterUsers = userFilterList9.filter(
-          (filterUser) => filterUser.username === selectUser.referralCode
-        );
-        return filteredUsers.push(filterUsers);
+      const filteredUsername = [];
+      userFilterList9.map((filterUser) => {
+        userList.map((selectUser) => {
+          if (filterUser.username === selectUser.referralCode) {
+            if (!filteredUsername.includes(selectUser.username)) {
+              filteredUsername.push(selectUser.username);
+              filteredUsers.push(selectUser);
+            }
+          }
+          return true;
+        });
+        return true;
       });
       return setUserFilterList10(filteredUsers);
     }
-  }, [userFilterList9]);
+  }, [userList, userFilterList9]);
 
   useEffect(() => {
     const finalArray = [
@@ -207,11 +277,8 @@ export const Dashboard = () => {
       ...userFilterList10,
     ];
     setUserFilterListFinal(finalArray);
-    const finallyArray = userFilterListFinal.filter(
-      (filterUser) => filterUser.length > 0
-    );
-    setUserFilterListFinally(finallyArray);
   }, [
+    userFilterList,
     userFilterList1,
     userFilterList2,
     userFilterList3,
@@ -223,6 +290,17 @@ export const Dashboard = () => {
     userFilterList9,
     userFilterList10,
   ]);
+
+  useEffect(() => {
+    const keys = ['username'];
+    const filtered = userFilterListFinal.filter(
+      ((s) => (o) =>
+        ((k) => !s.has(k) && s.add(k))(keys.map((k) => o[k]).join('|')))(
+        new Set()
+      )
+    );
+    setUserFilterListFinally(filtered);
+  }, [userFilterListFinal]);
 
   return (
     <div>

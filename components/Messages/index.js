@@ -77,7 +77,7 @@ export const Messages = () => {
                   <p>Olympus Link</p>
                 </div>
                 <div className="dashboard-box-value">
-                  <p>{`http://olympus.ng/register?referral=${username}`}</p>
+                  <p>{`https://olympus.ng/register?referral=${username}`}</p>
                 </div>
                 <div className="dashboard-box-button">
                   <Link href="/profile">

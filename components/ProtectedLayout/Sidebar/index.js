@@ -101,11 +101,11 @@ export const Sidebar = () => {
             ) : (
               ''
             )}
-            <li>
+            {/* <li>
               <Link href="/password">
                 <a>Change Password</a>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/login">
                 <a onClick={() => auth.signOut()}>Logout</a>

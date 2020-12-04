@@ -64,7 +64,7 @@ const useAuthProvider = () => {
       .signInWithEmailAndPassword(email, password)
       .then((response) => {
         setUser(response.user);
-        getUserAdditionalData(user);
+        getUserAdditionalData(response.user);
         return response.user;
       })
       .catch((error) => ({ error }));
@@ -102,7 +102,7 @@ const useAuthProvider = () => {
         .onSnapshot((doc) => setUser(doc.data()));
       return () => unsubscribe();
     }
-  }, []);
+  }, [user]);
 
   const signOut = () => auth.signOut().then(() => setUser(false));
 
