@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { VscLoading } from 'react-icons/vsc';
@@ -7,29 +8,18 @@ import { Navigation } from '../Layout/Navigation';
 import { useAuth } from '../../hooks/useAuth';
 import userService from '../../hooks/useUserService';
 
-export const Login = () => {
+export const ForgotPassword = () => {
+  const { register, errors, handleSubmit } = useForm();
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  let email = '';
   const auth = useAuth();
   const router = useRouter();
   const userServer = userService();
-  const {
-    query: { register },
-  } = router;
 
-  useEffect(() => {
-    if (register) {
-      setSuccess('Your registration was successful, kindly login');
-    }
-  }, [register]);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const onSubmit = () => {
     setSuccess('');
     setError('');
     setIsLoading(true);
@@ -45,22 +35,25 @@ export const Login = () => {
 
       if (!allEmails.length) {
         setIsLoading(false);
-        return setError('Username/Password is incorrect');
+        return setError('Username does not exist');
       }
 
       const userData = {
         email,
-        password,
       };
 
       auth
-        .signIn(userData)
+        .sendPasswordResetEmail(email)
         .then((response) => {
           if (!response.error) {
-            return router.push('/dashboard');
+            setUsername('');
+            setIsLoading(false);
+            return setSuccess(
+              'A mail has been sent from us. Kindly follow the instructions to reset your password'
+            );
           }
           setIsLoading(false);
-          return setError('Username/Password is incorrect');
+          return setError('Username is incorrect');
         })
         .catch((error) => ({ error }));
     });
@@ -75,7 +68,7 @@ export const Login = () => {
               <Navigation />
             </div>
             <div className="form-box">
-              <h1>Login</h1>
+              <h1>Reset Password</h1>
               {error && (
                 <div className="error-message">
                   <p>{error}</p>
@@ -86,51 +79,45 @@ export const Login = () => {
                   <p>{success}</p>
                 </div>
               )}
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-input">
-                  <div className="form-group">
+                  <div className="form-group referral">
                     <label htmlFor="username">Username</label>
                     <input
                       id="username"
                       type="text"
                       placeholder="Username"
-                      value={username}
-                      onChange={({ target }) => setUsername(target.value)}
-                      required
+                      defaultValue={username}
+                      name="username"
+                      onChange={({ target }) =>
+                        setUsername(target.value.toLowerCase())
+                      }
+                      ref={register({
+                        required: 'Please enter a username',
+                      })}
                     />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="user-password">Password</label>
-                    <input
-                      id="user-password"
-                      type="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={({ target }) => setPassword(target.value)}
-                      required
-                    />
+                    {errors.username && (
+                      <div className="errors-message">
+                        <p>{errors.username.message}</p>
+                      </div>
+                    )}
                   </div>
                   <div className="form-button">
                     <button type="submit" className="button-link">
                       {isLoading ? (
                         <VscLoading className="icon-spin" />
                       ) : (
-                        'Sign In'
+                        'Send Reset Link'
                       )}
                     </button>
                   </div>
                 </div>
               </form>
-              {/* <p className="form-link">
-                <Link href="/forgotpassword">
-                  <a>Forgot Password?</a>
-                </Link>
-              </p> */}
               <p className="form-link">
-                Don't have an account? &nbsp;
-                <Link href="/register">
+                Do you remember your password? &nbsp;
+                <Link href="/login">
                   <a>
-                    <strong>Sign Up</strong>
+                    <strong>Sign In</strong>
                   </a>
                 </Link>
               </p>

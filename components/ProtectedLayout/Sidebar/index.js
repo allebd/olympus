@@ -160,7 +160,7 @@ export const Sidebar = () => {
               <div>
                 <li>
                   <Link href="/allteam">
-                    <a>All Team members</a>
+                    <a>All members</a>
                   </Link>
                 </li>
                 <li>

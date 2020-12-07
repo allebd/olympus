@@ -1,38 +1,26 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ProtectedLayout } from '../ProtectedLayout';
 import { useRequireAuth } from '../../hooks/useRequireAuth';
-import userService from '../../hooks/useUserService';
 
 export const Referrallink = () => {
   const auth = useRequireAuth();
+  const router = useRouter();
   const { user } = auth;
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  });
   const [username, setUsername] = useState('');
   const [copy, setCopy] = useState(false);
-  const [userList, setUserList] = useState([]);
-  const [userFilterList, setUserFilterList] = useState([]);
-  const userServer = userService();
-  const getAllUsers = userServer.getAllUsers();
 
   useEffect(() => {
     if (auth.user) {
       setUsername(user.username);
     }
   }, [auth, user]);
-
-  useEffect(() => {
-    getAllUsers.onSnapshot((snap) => {
-      const users = snap.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setUserList(users);
-      const filterUsers = users.filter(
-        (filterUser) => filterUser.referralCode === user.username
-      );
-      setUserFilterList(filterUsers);
-    });
-  }, [getAllUsers, user]);
 
   return (
     <div>

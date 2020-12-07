@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { CgTrash } from 'react-icons/cg';
@@ -8,7 +9,13 @@ import userService from '../../hooks/useUserService';
 
 export const Allteam = () => {
   const auth = useRequireAuth();
+  const router = useRouter();
   const { user } = auth;
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  });
   const [username, setUsername] = useState('');
   const [userList, setUserList] = useState([]);
   const [userFilterList, setUserFilterList] = useState([]);
@@ -29,7 +36,7 @@ export const Allteam = () => {
       }));
       setUserList(users);
       const filterUsers = users.filter(
-        (filterUser) => filterUser.referralCode === user.username
+        (filterUser) => filterUser.referralCode === username
       );
       setUserFilterList(filterUsers);
     });

@@ -4,25 +4,20 @@ import { auth, db } from '../config/fire-config';
 const authContext = createContext({ user: {} });
 const { Provider } = authContext;
 
-export function AuthProvider(props) {
-  const auth = useAuthProvider();
-  return <Provider value={auth}>{props.children}</Provider>;
-}
-
 export const useAuth = () => useContext(authContext);
 
 // Provider hook that creates an auth object and handles it's state
 const useAuthProvider = () => {
   const [user, setUser] = useState(null);
 
-  const createUser = (user) =>
+  const createUser = (userL) =>
     db
       .collection('users')
-      .doc(user.uid)
-      .set(user)
+      .doc(userL.uid)
+      .set(userL)
       .then(() => {
-        setUser(user);
-        return user;
+        setUser(userL);
+        return userL;
       })
       .catch((error) => ({ error }));
 
@@ -59,6 +54,17 @@ const useAuthProvider = () => {
       )
       .catch((error) => ({ error }));
 
+  const getUserAdditionalData = (userL) =>
+    db
+      .collection('users')
+      .doc(userL.uid)
+      .get()
+      .then((userData) => {
+        if (userData.data()) {
+          setUser(userData.data());
+        }
+      });
+
   const signIn = ({ email, password }) =>
     auth
       .signInWithEmailAndPassword(email, password)
@@ -69,21 +75,10 @@ const useAuthProvider = () => {
       })
       .catch((error) => ({ error }));
 
-  const getUserAdditionalData = (user) =>
-    db
-      .collection('users')
-      .doc(user.uid)
-      .get()
-      .then((userData) => {
-        if (userData.data()) {
-          setUser(userData.data());
-        }
-      });
-
-  const handleAuthStateChanged = (user) => {
-    setUser(user);
-    if (user) {
-      getUserAdditionalData(user);
+  const handleAuthStateChanged = (userL) => {
+    setUser(userL);
+    if (userL) {
+      getUserAdditionalData(userL);
     }
   };
 
@@ -117,3 +112,8 @@ const useAuthProvider = () => {
     sendPasswordResetEmail,
   };
 };
+
+export function AuthProvider({ children }) {
+  const auth = useAuthProvider();
+  return <Provider value={auth}>{children}</Provider>;
+}
