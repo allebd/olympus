@@ -181,9 +181,7 @@ export const Register = () => {
                       placeholder="Username"
                       defaultValue={username}
                       name="username"
-                      onChange={({ target }) =>
-                        setUsername(target.value.toLowerCase())
-                      }
+                      onChange={({ target }) => setUsername(target.value)}
                       ref={register({
                         required: 'Please enter a username',
                       })}
@@ -223,12 +221,7 @@ export const Register = () => {
                       placeholder="Password"
                       defaultValue={password}
                       name="password"
-                      onChange={({ target }) =>
-                        setPassword(
-                          target.value.charAt(0).toUpperCase() +
-                            target.value.slice(1).toLowerCase()
-                        )
-                      }
+                      onChange={({ target }) => setPassword(target.value)}
                       ref={register({
                         required: 'Please enter a password',
                         minLength: {
@@ -252,10 +245,7 @@ export const Register = () => {
                       defaultValue={confirmPassword}
                       name="confirmpassword"
                       onChange={({ target }) =>
-                        setConfirmPassword(
-                          target.value.charAt(0).toUpperCase() +
-                            target.value.slice(1).toLowerCase()
-                        )
+                        setConfirmPassword(target.value)
                       }
                       ref={register({
                         required: 'Please enter your password again',
