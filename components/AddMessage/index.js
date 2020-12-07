@@ -1,12 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 import { ProtectedLayout } from '../ProtectedLayout';
 import { useRequireAuth } from '../../hooks/useRequireAuth';
 import messageService from '../../hooks/useMessageService';
 
 export const AddMessage = () => {
-  useRequireAuth();
+  const auth = useRequireAuth();
+  const router = useRouter();
+  const { user } = auth;
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  });
   const messageServer = messageService();
   const { register, errors, handleSubmit } = useForm();
   const [description, setDescription] = useState('');

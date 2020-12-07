@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { ProtectedLayout } from '../ProtectedLayout';
 import { useRequireAuth } from '../../hooks/useRequireAuth';
@@ -6,7 +7,13 @@ import userService from '../../hooks/useUserService';
 
 export const Team = () => {
   const auth = useRequireAuth();
+  const router = useRouter();
   const { user } = auth;
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  });
   const [username, setUsername] = useState('');
   const [userList, setUserList] = useState([]);
   const [userFilterList, setUserFilterList] = useState([]);
@@ -39,7 +46,7 @@ export const Team = () => {
       }));
       setUserList(users);
       const filterUsers = users.filter(
-        (filterUser) => filterUser.referralCode === user.username
+        (filterUser) => filterUser.referralCode === username
       );
       setUserFilterList(filterUsers);
     });
@@ -294,10 +301,10 @@ export const Team = () => {
             <div className="dashboard-summary">
               <div className="dashboard-box">
                 <div className="dashboard-box-title">
-                  <p>Total Team members</p>
+                  <p>Total members</p>
                 </div>
                 <div className="dashboard-box-value">
-                  <p>{userFilterList.length}</p>
+                  <p>{userFilterListFinally.length}</p>
                 </div>
                 <div className="dashboard-box-button">
                   <Link href="/team">
@@ -334,7 +341,7 @@ export const Team = () => {
             </div>
             <div className="dashboard-section">
               <div className="dashboard-referral">
-                {userFilterList.length ? (
+                {userFilterListFinally.length ? (
                   <table>
                     <thead>
                       <tr>
@@ -345,7 +352,7 @@ export const Team = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {userFilterList.map((userL) => (
+                      {userFilterListFinally.map((userL) => (
                         <tr>
                           <td>{userL.username}</td>
                           <td>{userL.referralCode}</td>

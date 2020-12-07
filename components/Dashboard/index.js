@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { ProtectedLayout } from '../ProtectedLayout';
 import { useRequireAuth } from '../../hooks/useRequireAuth';
@@ -7,7 +8,14 @@ import userService from '../../hooks/useUserService';
 
 export const Dashboard = () => {
   const auth = useRequireAuth();
+  const router = useRouter();
   const { user } = auth;
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  });
+  const [username, setUsername] = useState([]);
   const [messageList, setMessageList] = useState([]);
   const [messageSliceList, setMessageSliceList] = useState([]);
   const [mtiLink, setMtiLink] = useState('');
@@ -33,6 +41,7 @@ export const Dashboard = () => {
   useEffect(() => {
     if (auth.user) {
       setMtiLink(user.mtiLink);
+      setUsername(user.username);
     }
   }, [auth, user]);
 
@@ -56,7 +65,7 @@ export const Dashboard = () => {
       }));
       setUserList(users);
       const filterUsers = users.filter(
-        (filterUser) => filterUser.referralCode === user.username
+        (filterUser) => filterUser.referralCode === username
       );
       setUserFilterList(filterUsers);
     });

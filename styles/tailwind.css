@@ -684,16 +684,14 @@
 .head-text:after {
   content: "";
   animation-name: head;
-  animation-duration: 34s;
+  animation-duration: 25s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 
 @keyframes head {
   0% { content:"Earn over $1000 weekly";}
-  25% { content:"Take control of your financial freedom";}
-  50% { content:"Have you wanted to go to Dubai for free?";}
-  75% { content:"Going to Dubai has never been easier";}
+  50% { content:"Take control of your financial freedom";}
   100% { content:"Do you know your next 5 moves financially";}
 }
 
@@ -707,9 +705,7 @@
 
 @keyframes para {
   0% { content:"Let the professionals guide you...";}
-  25% { content:"Your financial freedom starts here...";}
-  50% { content:"A unique opportunity awaits you, waste no time";}
-  75% { content:"Receive an absolutely paid for 3day accommodation and flight with many more...";}
+  50% { content:"Your financial freedom starts here...";}
   100% { content:"Let's help you figure them out";}
 }
 

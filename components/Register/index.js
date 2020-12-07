@@ -46,6 +46,7 @@ export const Register = () => {
     }
     setSuccess('');
     setError('');
+    setMtiLink('');
     setIsLoading(true);
 
     const userData = {
